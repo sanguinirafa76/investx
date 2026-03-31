@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Rafael Sanguini Colagrossi">
+  <title>InvestX — Perfil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../CSS/style.css">
+  <link rel="stylesheet" href="../CSS/profile.css">
+</head>
+<body>
+
+<header class="topbar">
+  <span style="display:flex;align-items:center;gap:12px;">
+    <button class="btn-mobile-menu" onclick="toggleSidebar()">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo" style="text-decoration:none;">
+      <span class="logo-icon">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAD7UlEQVR4AdSWV6gVVxSGJ4UUUiAJCSmQnkAaJHlJh7Q3RR+sWLFg7ygqghUUG/aOCHYsWFDwxYodLNjwwd4VFAUVG+r3zZ193Gc8997jk3j4/7XWXmvPrDl7r12eT57S75lJ7If+xiA1gj0zav+KbQxVHsrt/C2vmwYvwa1wHhyZUXsbtrHJaPuiqkZ1id/n8RXwIGwD34GVwVh7gvZdgn4PVoqqEn/BU/6TWmhxH7ES9oc14QcZtQdgG3uAFnsCQqS/wJvU36KVocR/wOa8MhcDW8kFF7MLaxP9CnoDCpyT+2kWepxC/TaRV8F4rpiO/hDhjgBw2kIbUxU/ix32HNgMLhXobhO1GPUCrxaMImQiUTEW3hTRjjTxoOr4wT406uI6yHKWjxM2IYLEI+8ZdE20FxFNELxmhK4xicAwPmYvSBz8EYPnsyc3RBfw0LyCd2bb5A1EJqgL4FA2zPpuHcoQr4CMt/NAEd4waNxtCC852dsQuIE/vF9bKIa3VXZgflR2nfQfiP/fctsfdA0RHxFoyxhUaoDSvdHLiSJE78F563obAa1TF/yBrj0c2gQzwLXR8OyvgqOg8LTp/Lzx1Ouyjxj6mnQpRKfL4ilJjUoa1L+2/4BrS65TnsPEJi/T8pZPyPX9eRcWOmY2WF23aJWEyLaayHu6HDbQFhPoY48ZshGid27oL/xWBEegy2CQ+h83C0xuFsAfO4FznuBjtO7CYf/L4o2EFb6cNpuEH8gv4HWowj0Neg6KrIsTC8+N3tUMXFtT/1VIhSifsSch5roHfCDdDDoDd6ORSfK3KMExdyxP/YebqSPVQqcTgMFtLH3c3iaoLt0mqOFocVOYbEV/HvgynixDrWKqAbftFOg687dDu0CHtgW1wmNTnNxLkMa922/ArhB6OSNYrAfOJJWeAV9FL4EgxweF3rVnLwBe3p9T+NTTDAZz0gfJe+sYrAfGKXkQe/cQ8Ki0k7cC/Gv9BhRqVwB3NufTZ1ZMLpsBBtLkKEHQyzuLhSB6IVDGdqN2yPuNfQMdxOw261OQ5gu6HMRHeCwsOmg0bM/D82dhnxH7wIRWuEa9ddCjPFCaQVLrVppnCJHcByD0clvsMp8J22CyyV2OARhOdo2Dq9RTi33qe80DUk/iH0LPaWORXbj1uHti8q8YCwouMP05+yssQG3XctJu9Yt3VAb5Be6BZgn4UWlbdMLwvf0Bb27YfhCIX9nWYxqkpsT5eIdyyXhTeKx4bMThmN2cfLxFB8PosqjeoSh6dOY1ggHhBe6D3gvWFIbX3G7HOGvtWi3MThRe7Xzvt8HKMyauszhqs8PGni8t5aRq+HAAAA//++iSM6AAAABklEQVQDAPdMuT25PGg0AAAAAElFTkSuQmCC" alt="X" style="width:22px;height:22px;object-fit:contain;">
+      </span>
+      Invest<em>X</em>
+    </a>
+  </span>
+  <span class="top-actions">
+    <span class="status-badge"><span class="status-dot"></span>IA ATIVA</span>
+    <a href="perfil.html" class="user-avatar" id="topbarAvatar" title="Perfil">?</a>
+  </span>
+</header>
+
+<span class="sidebar-overlay" id="overlay" onclick="closeSidebarOverlay()"></span>
+
+<main class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+      <div class="nav-group">
+        <span class="nav-label">Navegação</span>
+        <button class="nav-item" onclick="goTo('dashboard')"><span class="nav-icon">⊞</span> Dashboard</button>
+        <button class="nav-item" onclick="goTo('portfolio')"><span class="nav-icon">◈</span> Portfólio</button>
+        <button class="nav-item" onclick="goTo('mercado')"><span class="nav-icon">◉</span> Mercado</button>
+        <button class="nav-item" onclick="goTo('analise')"><span class="nav-icon">⟁</span> Análise IA</button>
+        <button class="nav-item" onclick="goTo('alertas')"><span class="nav-icon">◈</span> Alertas</button>
+      </div>
+      <div class="nav-group">
+        <span class="nav-label" style="margin-top:8px;">Conta</span>
+        <button class="nav-item active" onclick="location.href='perfil.html'"><span class="nav-icon">◎</span> Perfil</button>
+        <button class="nav-item" onclick="location.href='config.html'"><span class="nav-icon">⚙</span> Configurações</button>
+        <button class="nav-item" onclick="logout()" style="color:var(--red-glow);margin-top:8px;"><span class="nav-icon">⏻</span> Sair</button>
+      </div>
+    </nav>
+    <section class="market-mini" style="margin-bottom:10px;">
+      <span class="nav-label" id="nav-indice" style="padding:0 0 6px;"><span style="font-size:13px;">Í</span>ndices</span>
+      <article class="mini-asset"><span class="mini-name">IBOV</span><span class="mini-val up">▲ 128.741</span></article>
+      <article class="mini-asset"><span class="mini-name">S&P500</span><span class="mini-val up">▲ 5.248</span></article>
+      <article class="mini-asset"><span class="mini-name">BTC/USD</span><span class="mini-val up">▲ 84.210</span></article>
+      <article class="mini-asset"><span class="mini-name">USD/BRL</span><span class="mini-val dn">▼ 5,87</span></article>
+    </section>
+  </aside>
+
+  <section class="page-content">
+
+    <section class="profile-hero">
+      <span class="avatar-large" id="profileAvatarLarge">?</span>
+      <span class="profile-info">
+        <h2 id="profileName"><em>USUÁRIO</em></h2>
+        <p id="profileEmailLine">email@exemplo.com &nbsp;·&nbsp; Membro</p>
+        <span class="profile-badges">
+          <span class="pbadge" id="badgeRisco">Perfil Moderado</span>
+          <span class="pbadge">Score 87/100</span>
+          <span class="pbadge gray">Plano Pro</span>
+        </span>
+      </span>
+    </section>
+
+    <section class="profile-stats">
+      <article class="pstat"><p class="pstat-val">R$48k</p><p class="pstat-lbl">Patrimônio</p></article>
+      <article class="pstat"><p class="pstat-val up">+8,4%</p><p class="pstat-lbl">Rent. Mês</p></article>
+      <article class="pstat"><p class="pstat-val">12</p><p class="pstat-lbl">Posições</p></article>
+      <article class="pstat"><p class="pstat-val" id="statMonths">—</p><p class="pstat-lbl">Na plataforma</p></article>
+    </section>
+
+    <section class="two-col">
+      <article class="profile-card">
+        <h3 class="pc-title">EDITAR <em>PERFIL</em></h3>
+        <fieldset class="edit-form">
+          <span>
+            <label class="field-label" for="p-name">Nome completo</label>
+            <input class="field-input" id="p-name" type="text" placeholder="Seu nome">
+          </span>
+          <span>
+            <label class="field-label" for="p-email">E-mail</label>
+            <input class="field-input" id="p-email" type="email" placeholder="seu@email.com">
+          </span>
+          <span>
+            <label class="field-label" for="p-perfil">Perfil de risco</label>
+            <select class="field-input" id="p-perfil">
+              <option>Conservador</option>
+              <option>Moderado</option>
+              <option>Arrojado</option>
+              <option>Agressivo</option>
+            </select>
+          </span>
+          <span>
+            <label class="field-label" for="p-avatar">Foto de perfil</label>
+            <input class="field-input" id="p-avatar" type="file" accept="image/*" style="padding:6px 12px;cursor:pointer;" onchange="previewAvatar(this)">
+          </span>
+          <button class="btn-save" onclick="saveProfile()">SALVAR ALTERAÇÕES</button>
+          <p id="saveMsg" style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--red-glow);display:none;margin-top:4px;">✓ Alterações salvas!</p>
+        </fieldset>
+      </article>
+
+      <article class="profile-card">
+        <h3 class="pc-title">ATIVIDADE <em>RECENTE</em></h3>
+        <ul class="activity-list">
+          <li class="activity-item">
+            <span class="act-icon">📊</span>
+            <span class="act-text"><strong>Análise de portfólio consultada</strong><time>hoje, 14:32</time></span>
+          </li>
+          <li class="activity-item">
+            <span class="act-icon">🔔</span>
+            <span class="act-text"><strong>Alerta PETR4 criado — R$37,00</strong><time>hoje, 11:10</time></span>
+          </li>
+          <li class="activity-item">
+            <span class="act-icon">💬</span>
+            <span class="act-text"><strong>OMEGA IA consultada — 8 perguntas</strong><time>ontem, 16:45</time></span>
+          </li>
+          <li class="activity-item">
+            <span class="act-icon">📈</span>
+            <span class="act-text"><strong>Relatório semanal gerado</strong><time>seg, 08:00</time></span>
+          </li>
+          <li class="activity-item">
+            <span class="act-icon">🔑</span>
+            <span class="act-text"><strong>Login realizado</strong><time>seg, 07:58</time></span>
+          </li>
+        </ul>
+      </article>
+    </section>
+
+  </section>
+</main>
+
+
+
+<script src="../JS/market.js"></script>
+<script src="../JS/auth.js"></script>
+<script src="../JS/ui.js"></script>
+<script src="../JS/perfil.js"></script>
+</body>
+</html>

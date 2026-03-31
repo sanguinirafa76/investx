@@ -1,0 +1,175 @@
+/* ============================================================
+   InvestX — register.css
+   Estilos exclusivos da página de Cadastro
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  height: 100%; margin: 0; padding: 0;
+  overflow: hidden;
+}
+
+/* ---- LAYOUT HORIZONTAL ---- */
+.register-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* ---- LADO ESQUERDO — Branding + Avatar ---- */
+.reg-left {
+  width: 42%;
+  min-width: 340px;
+  background: var(--dark);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.reg-left::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(220,38,38,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(220,38,38,.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+.reg-left::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 220px;
+  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(139,0,0,.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.reg-left-logo {
+  position: relative; z-index: 2;
+  padding: 28px 36px;
+}
+
+.reg-left-content {
+  position: relative; z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 40px 40px;
+  text-align: center;
+}
+.reg-left-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px; letter-spacing: 4px;
+  color: var(--white); margin-bottom: 6px;
+}
+.reg-left-title em { color: var(--red-bright); font-style: normal; }
+.reg-left-sub {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px; letter-spacing: 2px;
+  color: var(--gray); margin-bottom: 36px;
+}
+
+/* Avatar picker centralizado */
+.avatar-picker-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.avatar-preview-lg {
+  width: 110px; height: 110px; border-radius: 50%;
+  background: var(--card);
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px; cursor: pointer;
+  position: relative; overflow: hidden;
+  transition: border-color .2s, box-shadow .2s;
+}
+.avatar-preview-lg:hover {
+  border-color: var(--red-bright);
+  box-shadow: 0 0 20px rgba(220,38,38,.25);
+}
+.avatar-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,.5);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; opacity: 0;
+  transition: opacity .2s;
+  border-radius: 50%;
+}
+.avatar-preview-lg:hover .avatar-overlay { opacity: 1; }
+.avatar-hint-text {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px; letter-spacing: 2px;
+  color: var(--gray); text-align: center;
+}
+#avatarInput { display: none; }
+
+/* Benefícios */
+.reg-benefits {
+  list-style: none; padding: 0; margin: 32px 0 0;
+  text-align: left; width: 100%; max-width: 260px;
+}
+.reg-benefits li {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px; letter-spacing: 1px;
+  color: var(--gray); padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,.04);
+  display: flex; align-items: center; gap: 8px;
+}
+.reg-benefits li::before { content: '▶'; color: var(--red-bright); font-size: 7px; }
+
+/* ---- LADO DIREITO — Formulário ---- */
+.reg-right {
+  flex: 1;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 48px;
+  overflow-y: auto;
+}
+.reg-form-inner {
+  width: 100%;
+  max-width: 420px;
+}
+.reg-form-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 38px; letter-spacing: 4px;
+  color: var(--white); margin-bottom: 4px;
+}
+.reg-form-title em { color: var(--red-bright); font-style: normal; }
+.reg-form-sub {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px; letter-spacing: 2px;
+  color: var(--gray); margin-bottom: 32px;
+}
+
+.pass-wrap { position: relative; }
+.pass-wrap input { padding-right: 42px; }
+.pass-toggle {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; cursor: pointer; font-size: 16px; color: var(--gray);
+  padding: 0; line-height: 1; transition: color .2s;
+}
+.pass-toggle:hover { color: var(--white); }
+
+.auth-switch {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px; color: var(--gray);
+  margin-top: 18px; text-align: center;
+}
+.auth-switch a { color: var(--red-glow); text-decoration: none; }
+.auth-switch a:hover { color: var(--white); }
+
+@media (max-width: 768px) {
+  html, body { overflow: auto; }
+  .register-layout { flex-direction: column; height: auto; min-height: 100vh; }
+  .reg-left { width: 100%; min-width: unset; padding-bottom: 32px; }
+  .reg-left::before, .reg-left::after { display: none; }
+  .reg-left-content { padding: 20px 32px 32px; }
+  .reg-right { padding: 36px 24px; }
+  .reg-benefits { display: none; }
+}

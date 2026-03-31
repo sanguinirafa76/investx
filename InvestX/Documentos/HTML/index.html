@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Rafael Sanguini Colagrossi">
+  <meta name="description" content="InvestX — IA de Investimentos">
+  <title>InvestX — Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+
+<!-- ======= TOPBAR ======= -->
+<header class="topbar">
+  <span style="display:flex;align-items:center;gap:12px;">
+    <button class="btn-mobile-menu" onclick="toggleSidebar()">
+      <span></span><span></span><span></span>
+    </button>
+    <span class="logo" onclick="navigate('dashboard')">
+      <span class="logo-icon">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAD7UlEQVR4AdSWV6gVVxSGJ4UUUiAJCSmQnkAaJHlJh7Q3RR+sWLFg7ygqghUUG/aOCHYsWFDwxYodLNjwwd4VFAUVG+r3zZ193Gc8997jk3j4/7XWXmvPrDl7r12eT57S75lJ7If+xiA1gj0zav+KbQxVHsrt/C2vmwYvwa1wHhyZUXsbtrHJaPuiqkZ1id/n8RXwIGwD34GVwVh7gvZdgn4PVoqqEn/BU/6TWmhxH7ES9oc14QcZtQdgG3uAFnUQ2+FnsCQqS/wJvU36KVocR/wOa8MhcDW8kFF7MLaxP9CnoDCpyT+2kWepxC/TaRV8F4rpiO/hDhjgBw2kIbUxU/ix32HNgMLhXobhO1GPUCrxaMImQiUTEW3hTRjjTxoOr4wT406uI6yHKWjxM2IYLEI+8ZdE20FxFNELxmhK4xicAwPmYvSBz8EYPnsyc3RBfw0LyCd2bb5A1EJqgL4FA2zPpuHcoQr4CMt/NAEd4waNxtCC852dsQuIE/vF9bKIa3VXZgflR2nfQfiP/fctsfdA0RHxFoyxhUaoDSvdHLiSJE78F563obAa1TF/yBrj0c2gQzwLXR8OyvgqOg8LTp/Lzx1Ouyjxj6mnQpRKfL4ilJjUoa1L+2/4BrS65TnsPEJi/T8pZPyPX9eRcWOmY2WF23aJWEyLaayHu6HDbQFhPoY48ZshGid27oL/xWBEegy2CQ+h83C0xuFsAfO4FznuBjtO7CYf/L4o2EFb6cNpuEH8gv4HWowj0Neg6KrIsTC8+N3tUMXFtT/1VIhSifsSch5roHfCDdDDoDd6ORSfK3KMExdyxP/YebqSPVQqcTgMFtLH3c3iaoLt0mqOFocVOYbEV/HvgynixDrWKqAbftFOg687dDu0CHtgW1wmNTnNxLkMa922/ArhB6OSNYrAfOJJWeAV9FL4EgxweF3rVnLwBe3p9T+NTTDAZz0gfJe+sYrAfGKXkQe/cQ8Ki0k7cC/Gv9BhRqVwB3NufTZ1ZMLpsBBtLkKEHQyzuLhSB6IVDGdqN2yPuNfQMdxOw261OQ5gu6HMRHeCwsOmg0bM/D82dhnxH7wIRWuEa9ddCjPFCaQVLrVppnCJHcByD0clvsMp8J22CyyV2OARhOdo2Dq9RTi33qe80DUk/iH0LPaWORXbj1uHti8q8YCwouMP05+yssQG3XctJu9Yt3VAb5Be6BZgn4UWlbdMLwvf0Bb27YfhCIX9nWYxqkpsT5eIdyyXhTeKx4bMThmN2cfLxFB8PosqjeoSh6dOY1ggHhBe6D3gvWFIbX3G7HOGvtWi3MThRe7Xzvt8HKMyauszhqs8PGni8t5aRq+HAAAA//++iSM6AAAABklEQVQDAPdMuT25PGg0AAAAAElFTkSuQmCC" alt="X">
+      </span>
+      Invest<em>X</em>
+    </span>
+  </span>
+  <span class="top-actions">
+    <span class="status-badge"><span class="status-dot"></span>IA ATIVA</span>
+    <span class="status-badge">MERCADO ABERTO</span>
+    <button class="btn-mobile-chat" onclick="toggleChat()">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAABm0lEQVR4AeyWu0rEQBSGo+AFfANLGwtvtY2inYWgjZWdb6Hg3bewERuxUF/AQtBKLGzER/DWKxbq949kObubE0hCZrfY5f9nMplz5sucHXbTn3To0zXgaQqwhXcreJNcrUPny+54lrBHfIh3KviIXK0zQ+/KghfcqHITS3lpFjxoAvu4LmtSg4ZD6zQW7ITUc7sHrqeuGavGKvU37AvcOHCxwANAV/EaDooFDjCaMRwUGxygaroWvMHTfeHfAiY06Ce0TuPteIT4U3yMh3AZ3eUleeAHktax9EZzgPcKWCf4mnjJ/gdoHOyBx8NsktzST+BtXOQ/+or4VHPphe09sL4fgeYJ/sBlpB+LFRJPcJuywK9ECajS6gEYBum6yCH7JOsSj+I2tYJV2kmi1NM16b5pVHFgwWespZ16pV1mXuVXJfKsg+itwRL/suBnbqmcdJnS6RZQ8DzrIE6xwg12ZcFuUImJF3IW8T7O3ExdYHiJgHpb1QO864Z1neCUo5LrPVt9ei+JARYsLf25BnIssFgq/ZMu5Jhg8Rr+AwAA//+WT13LAAAABklEQVQDAPNfaT2pBidVAAAAAElFTkSuQmCC" alt="chat">
+    </button>
+    <a href="perfil.html" class="user-avatar" title="Perfil">VF</a>
+  </span>
+</header>
+
+<span class="sidebar-overlay" id="overlay" onclick="closeAll()"></span>
+
+<main class="layout">
+
+<!-- ======= SIDEBAR ======= -->
+<aside class="sidebar" id="sidebar">
+  <nav class="sidebar-nav">
+    <div class="nav-group">
+      <span class="nav-label">Navegação</span>
+      <button class="nav-item active" onclick="navigate('dashboard')"><span class="nav-icon">⊞</span> Dashboard</button>
+      <button class="nav-item" onclick="navigate('portfolio')"><span class="nav-icon">◈</span> Portfólio</button>
+      <button class="nav-item" onclick="navigate('mercado')"><span class="nav-icon">◉</span> Mercado</button>
+      <button class="nav-item" onclick="navigate('analise')"><span class="nav-icon">⟁</span> Análise IA</button>
+      <button class="nav-item" onclick="navigate('alertas')"><span class="nav-icon">◈</span> Alertas</button>
+      <button class="nav-item" onclick="navigate('negociar')" style="border:1px solid rgba(220,38,38,0.3);margin-top:4px;"><span class="nav-icon">⚡</span> Negociar</button>
+    </div>
+    <div class="nav-group">
+      <span class="nav-label" style="margin-top:8px;">Conta</span>
+      <button class="nav-item" onclick="location.href='perfil.html'"><span class="nav-icon">◎</span> Perfil</button>
+      <button class="nav-item" onclick="location.href='config.html'"><span class="nav-icon">⚙</span> Configurações</button>
+      <button class="nav-item" onclick="logout()" style="margin-top:4px;"><span class="nav-icon">⇥</span> Sair</button>
+    </div>
+  </nav>
+  <section class="market-mini">
+    <span class="nav-label" style="padding:0 0 6px;font-size:10px;">Índices</span>
+    <article class="mini-asset"><span class="mini-name">IBOV</span><span class="mini-val up">▲ 128.741</span></article>
+    <article class="mini-asset"><span class="mini-name">S&P500</span><span class="mini-val up">▲ 5.248</span></article>
+    <article class="mini-asset"><span class="mini-name">BTC/USD</span><span class="mini-val up">▲ 84.210</span></article>
+    <article class="mini-asset"><span class="mini-name">USD/BRL</span><span class="mini-val dn">▼ 5,87</span></article>
+  </section>
+</aside>
+
+<!-- ======= CONTENT AREA ======= -->
+<section class="content-area">
+
+  <!-- ===== DASHBOARD ===== -->
+  <section class="page-view active" id="view-dashboard">
+    <section class="metrics">
+      <article class="metric-card" onclick="navigate('portfolio')">
+        <p class="metric-label">Patrimônio Total:</p>
+        <p class="metric-value">R$ 48.320</p>
+        <p class="metric-change up">▲ +R$ 1.240 hoje</p>
+        <p class="metric-sub">vs. ontem: R$ 47.080</p>
+        <div style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px;display:flex;justify-content:space-between;">
+          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">Mês: <span style="color:var(--red-glow)">+R$3.740</span></span>
+          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">Ano: <span style="color:var(--red-glow)">+R$8.120</span></span>
+        </div>
+      </article>
+      <article class="metric-card" onclick="navigate('portfolio')">
+        <p class="metric-label">Rentabilidade Mês:</p>
+        <p class="metric-value up">+8,4%</p>
+        <p class="metric-change up">▲ Acima do CDI</p>
+        <p class="metric-sub">CDI: +0,87% · IBOV: +3,2%</p>
+        <div style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px;display:flex;justify-content:space-between;">
+          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">12M: <span style="color:var(--red-glow)">+31,5%</span></span>
+          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">Sharpe: <span style="color:var(--red-glow)">1.82</span></span>
+        </div>
+      </article>
+      <article class="metric-card" onclick="navigate('analise')">
+        <p class="metric-label">Score IA:</p>
+        <p class="metric-value" style="color:var(--red-glow)">87/100</p>
+        <p class="metric-change up">▲ +3 pts semana</p>
+        <p class="metric-sub">Perfil: Moderado</p>
+        <div style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px;display:flex;justify-content:space-between;">
+          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">Risco: <span style="color:#f59e0b">Médio</span></span>
+          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">Div.: <span style="color:var(--red-glow)">Boa</span></span>
+        </div>
+      </article>
+      <article class="metric-card" onclick="navigate('alertas')">
+        <p class="metric-label">Posições Abertas:</p>
+        <p class="metric-value">12</p>
+        <p class="metric-change" style="color:var(--gray)">3 com alerta IA</p>
+        <p class="metric-sub">2 aguard. revisão</p>
+        <div style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px;display:flex;justify-content:space-between;">
+          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">Lucrativas: <span style="color:var(--red-glow)">9/12</span></span>
+          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">Stop: <span style="color:#f59e0b">2</span></span>
+        </div>
+      </article>
+      <article class="metric-card" onclick="navigate('portfolio')" style="cursor:pointer;">
+        <p class="metric-label">Dividendos (mês):</p>
+        <p class="metric-value" style="color:var(--red-glow)">R$ 420</p>
+        <p class="metric-change up">▲ +R$80 vs mês ant.</p>
+        <p class="metric-sub">Yield médio: 8,7% a.a.</p>
+        <div style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px;display:flex;justify-content:space-between;">
+          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">FIIs: <span style="color:var(--red-glow)">R$310</span></span>
+          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">Ações: <span style="color:var(--red-glow)">R$110</span></span>
+        </div>
+      </article>
+      <article class="metric-card" onclick="navigate('negociar')" style="cursor:pointer;border-color:rgba(220,38,38,0.3);">
+        <p class="metric-label">Poder de Compra:</p>
+        <p class="metric-value">R$ 5.200</p>
+        <p class="metric-change" style="color:var(--gray)">Saldo disponível</p>
+        <p class="metric-sub">Margem: R$12.000</p>
+        <div style="margin-top:8px;border-top:1px solid rgba(220,38,38,0.3);padding-top:8px;text-align:center;">
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:var(--red-bright);letter-spacing:1px;">⚡ NEGOCIAR AGORA</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="dash-center">
+      <!-- Chart panel -->
+      <section class="chart-panel">
+        <header class="panel-header">
+          <h2 class="panel-title">Gráfico <em>Ativo</em></h2>
+          <nav class="chart-tabs">
+            <button class="chart-tab active" onclick="setTab(this,'1D')">1D</button>
+            <button class="chart-tab" onclick="setTab(this,'1S')">1S</button>
+            <button class="chart-tab" onclick="setTab(this,'1M')">1M</button>
+            <button class="chart-tab" onclick="setTab(this,'3M')">3M</button>
+            <button class="chart-tab" onclick="setTab(this,'1A')">1A</button>
+          </nav>
+        </header>
+        <figure class="chart-wrapper">
+          <svg class="chart-svg" id="chartSVG" viewBox="0 0 600 220" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#8b0000"/>
+                <stop offset="50%" style="stop-color:#dc2626"/>
+                <stop offset="100%" style="stop-color:#ef4444"/>
+              </linearGradient>
+              <linearGradient id="areaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#dc2626;stop-opacity:0.25"/>
+                <stop offset="100%" style="stop-color:#dc2626;stop-opacity:0"/>
+              </linearGradient>
+              <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#8b0000"/>
+                <stop offset="100%" style="stop-color:#ef4444"/>
+              </linearGradient>
+            </defs>
+            <line class="chart-bg-grid" x1="0" y1="40" x2="600" y2="40"/>
+            <line class="chart-bg-grid" x1="0" y1="80" x2="600" y2="80"/>
+            <line class="chart-bg-grid" x1="0" y1="120" x2="600" y2="120"/>
+            <line class="chart-bg-grid" x1="0" y1="160" x2="600" y2="160"/>
+            <line class="chart-bg-grid" x1="100" y1="0" x2="100" y2="220"/>
+            <line class="chart-bg-grid" x1="200" y1="0" x2="200" y2="220"/>
+            <line class="chart-bg-grid" x1="300" y1="0" x2="300" y2="220"/>
+            <line class="chart-bg-grid" x1="400" y1="0" x2="400" y2="220"/>
+            <line class="chart-bg-grid" x1="500" y1="0" x2="500" y2="220"/>
+            <text class="chart-label" x="8" y="38">R$38</text>
+            <text class="chart-label" x="8" y="78">R$36</text>
+            <text class="chart-label" x="8" y="118">R$34</text>
+            <text class="chart-label" x="8" y="158">R$32</text>
+            <text class="chart-label" x="95" y="215">09h</text>
+            <text class="chart-label" x="195" y="215">11h</text>
+            <text class="chart-label" x="295" y="215">13h</text>
+            <text class="chart-label" x="395" y="215">15h</text>
+            <text class="chart-label" x="495" y="215">17h</text>
+            <path class="chart-area" id="chartArea" d=""/>
+            <path class="chart-line" id="chartLine" d=""/>
+          </svg>
+          <figcaption class="chart-overlay">
+            <span class="chart-asset-name">PETR4</span>
+            <span class="chart-asset-price" id="livePrice">R$ 37,48</span>
+            <span class="chart-asset-change up" id="liveDelta">▲ +2.30%</span>
+          </figcaption>
+        </figure>
+        <section class="portfolio-row">
+          <article class="port-card" onclick="selectAsset('PETR4','R$ 37,48','+2.30%')">
+            <span class="port-logo" style="background:linear-gradient(135deg,#8b0000,#dc2626);color:white;">P4</span>
+            <span class="port-info"><strong class="port-name">PETR4</strong><span class="port-full">- Petrobras PN</span></span>
+            <span class="port-right"><span class="port-price">R$37,48</span><span class="port-pct up">▲ +2.30%</span></span>
+          </article>
+          <article class="port-card" onclick="selectAsset('VALE3','R$ 62,14','-0.80%')">
+            <span class="port-logo" style="background:linear-gradient(135deg,#1a1a2e,#3b3b6b);color:#aaa;">V3</span>
+            <span class="port-info"><strong class="port-name">VALE3</strong><span class="port-full">- Vale ON</span></span>
+            <span class="port-right"><span class="port-price">R$62,14</span><span class="port-pct dn">▼ -0.80%</span></span>
+          </article>
+          <article class="port-card" onclick="selectAsset('BTC','R$ 430.800','+4.70%')">
+            <span class="port-logo" style="background:linear-gradient(135deg,#78350f,#b45309);color:white;">₿</span>
+            <span class="port-info"><strong class="port-name">BTC</strong><span class="port-full">- Bitcoin</span></span>
+            <span class="port-right"><span class="port-price">R$430k</span><span class="port-pct up">▲ +4.70%</span></span>
+          </article>
+        </section>
+      </section>
+
+      <!-- Chat panel -->
+      <aside class="chat-panel" id="chatPanel">
+        <header class="chat-header">
+          <span class="ai-avatar">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAD7UlEQVR4AdSWV6gVVxSGJ4UUUiAJCSmQnkAaJHlJh7Q3RR+sWLFg7ygqghUUG/aOCHYsWFDwxYodLNjwwd4VFAUVG+r3zZ193Gc8997jk3j4/7XWXmvPrDl7r12eT57S75lJ7If+xiA1gj0zav+KbQxVHsrt/C2vmwYvwa1wHhyZUXsbtrHJaPuiqkZ1id/n8RXwIGwD34GVwVh7gvZdgn4PVoqqEn/BU/6TWmhxH7ES9oc14QcZtQdgG3uAFnUQ2+FnsCQqS/wJvU36KVocR/wOa8MhcDW8kFF7MLaxP9CnoDCpyT+2kWepxC/TaRV8F4rpiO/hDhjgBw2kIbUxU/ix32HNgMLhXobhO1GPUCrxaMImQiUTEW3hTRjjTxoOr4wT406uI6yHKWjxM2IYLEI+8ZdE20FxFNELxmhK4xicAwPmYvSBz8EYPnsyc3RBfw0LyCd2bb5A1EJqgL4FA2zPpuHcoQr4CMt/NAEd4waNxtCC852dsQuIE/vF9bKIa3VXZgflR2nfQfiP/fctsfdA0RHxFoyxhUaoDSvdHLiSJE78F563obAa1TF/yBrj0c2gQzwLXR8OyvgqOg8LTp/Lzx1Ouyjxj6mnQpRKfL4ilJjUoa1L+2/4BrS65TnsPEJi/T8pZPyPX9eRcWOmY2WF23aJWEyLaayHu6HDbQFhPoY48ZshGid27oL/xWBEegy2CQ+h83C0xuFsAfO4FznuBjtO7CYf/L4o2EFb6cNpuEH8gv4HWowj0Neg6KrIsTC8+N3tUMXFtT/1VIhSifsSch5roHfCDdDDoDd6ORSfK3KMExdyxP/YebqSPVQqcTgMFtLH3c3iaoLt0mqOFocVOYbEV/HvgynixDrWKqAbftFOg687dDu0CHtgW1wmNTnNxLkMa922/ArhB6OSNYrAfOJJWeAV9FL4EgxweF3rVnLwBe3p9T+NTTDAZz0gfJe+sYrAfGKXkQe/cQ8Ki0k7cC/Gv9BhRqVwB3NufTZ1ZMLpsBBtLkKEHQyzuLhSB6IVDGdqN2yPuNfQMdxOw261OQ5gu6HMRHeCwsOmg0bM/D82dhnxH7wIRWuEa9ddCjPFCaQVLrVppnCJHcByD0clvsMp8J22CyyV2OARhOdo2Dq9RTi33qe80DUk/iH0LPaWORXbj1uHti8q8YCwouMP05+yssQG3XctJu9Yt3VAb5Be6BZgn4UWlbdMLwvf0Bb27YfhCIX9nWYxqkpsT5eIdyyXhTeKx4bMThmN2cfLxFB8PosqjeoSh6dOY1ggHhBe6D3gvWFIbX3G7HOGvtWi3MThRe7Xzvt8HKMyauszhqs8PGni8t5aRq+HAAAA//++iSM6AAAABklEQVQDAPdMuT25PGg0AAAAAElFTkSuQmCC" alt="Ω">
+          </span>
+          <span>
+            <p class="chat-ai-name">OMEGA IA</p>
+            <p class="chat-ai-status">online · pronta para responder</p>
+          </span>
+        </header>
+        <ol class="chat-messages" id="chatMessages">
+          <li class="msg msg-ai">
+            <p class="msg-tag">OMEGA IA</p>
+            <p class="msg-bubble">Olá! 👋 Sou a **OMEGA IA**, sua assistente de investimentos. Posso analisar ações, FIIs, criptos, renda fixa e responder qualquer dúvida — financeira ou não. Como posso ajudar hoje?</p>
+            <time class="msg-time">agora mesmo</time>
+          </li>
+        </ol>
+        <nav class="suggestion-chips">
+          <button class="chip" onclick="sendChip(this)">📊 Analise meu portfólio</button>
+          <button class="chip" onclick="sendChip(this)">🔴 Melhores ações hoje</button>
+          <button class="chip" onclick="sendChip(this)">₿ Como está o Bitcoin?</button>
+          <button class="chip" onclick="sendChip(this)">📈 O que é RSI?</button>
+          <button class="chip" onclick="sendChip(this)">💰 Melhor FII para dividendos</button>
+          <button class="chip" onclick="sendChip(this)">⚡ Selic e meus investimentos</button>
+        </nav>
+        <footer class="chat-input-area">
+          <textarea class="chat-input" id="chatInput" placeholder="Pergunte qualquer coisa à OMEGA IA..." rows="1"
+            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage()}"
+            oninput="autoResize(this)"></textarea>
+          <button class="send-btn" onclick="sendMessage()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+          </button>
+        </footer>
+      </aside>
+    </section>
+  </section>
+
+  <!-- ===== PORTFOLIO ===== -->
+  <section class="page-view" id="view-portfolio">
+    <span class="inner-page">
+      <h1 class="page-title"><em>MEU</em> PORTFÓLIO</h1>
+      <p class="page-sub">// 12 posições abertas · atualizado agora</p>
+      <section class="summary-grid">
+        <article class="summary-card"><span class="sc-label">Patrimônio Total</span><p class="sc-value">R$ 48.320</p><p class="sc-change up">▲ +R$1.240 hoje</p></article>
+        <article class="summary-card"><span class="sc-label">Rentabilidade Mês</span><p class="sc-value up">+8,4%</p><p class="sc-change up">▲ CDI: 0,87%</p></article>
+        <article class="summary-card"><span class="sc-label">Custo Total</span><p class="sc-value">R$ 44.600</p><p class="sc-change up">▲ Lucro: R$3.720</p></article>
+      </section>
+      <section class="table-section">
+        <header class="table-header">
+          <h2 class="table-title">POSIÇÕES <em>ABERTAS</em></h2>
+          <span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray);">12 ativos</span>
+        </header>
+        <table class="assets-table">
+          <thead><tr><th>Ativo</th><th>Qtd.</th><th>Preço Médio</th><th>Preço Atual</th><th style="text-align:right">Resultado</th><th style="text-align:right">% Cart.</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="asset-logo-cell"><span class="asset-logo" style="background:linear-gradient(135deg,#8b0000,#dc2626);color:white;">P4</span><span><strong style="font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--white);">PETR4</strong><br><span style="font-size:11px;color:var(--gray);">Petrobras PN</span></span></span></td>
+              <td style="font-family:'Share Tech Mono',monospace">200</td><td style="font-family:'Share Tech Mono',monospace">R$35,10</td><td style="font-family:'Share Tech Mono',monospace">R$37,48</td>
+              <td class="td-right up">+R$476<span>+6,78%</span></td><td class="td-right">15,5%</td>
+            </tr>
+            <tr>
+              <td><span class="asset-logo-cell"><span class="asset-logo" style="background:linear-gradient(135deg,#1a1a2e,#3b3b6b);color:#aaa;">V3</span><span><strong style="font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--white);">VALE3</strong><br><span style="font-size:11px;color:var(--gray);">Vale ON</span></span></span></td>
+              <td style="font-family:'Share Tech Mono',monospace">100</td><td style="font-family:'Share Tech Mono',monospace">R$65,00</td><td style="font-family:'Share Tech Mono',monospace">R$62,14</td>
+              <td class="td-right dn">-R$286<span>-4,40%</span></td><td class="td-right">12,9%</td>
+            </tr>
+            <tr>
+              <td><span class="asset-logo-cell"><span class="asset-logo" style="background:linear-gradient(135deg,#1e3a1e,#166534);color:#86efac;">IT</span><span><strong style="font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--white);">ITUB4</strong><br><span style="font-size:11px;color:var(--gray);">Itaú Unibanco PN</span></span></span></td>
+              <td style="font-family:'Share Tech Mono',monospace">300</td><td style="font-family:'Share Tech Mono',monospace">R$30,20</td><td style="font-family:'Share Tech Mono',monospace">R$32,15</td>
+              <td class="td-right up">+R$585<span>+6,46%</span></td><td class="td-right">19,9%</td>
+            </tr>
+            <tr>
+              <td><span class="asset-logo-cell"><span class="asset-logo" style="background:linear-gradient(135deg,#78350f,#b45309);color:white;">₿</span><span><strong style="font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--white);">BTC</strong><br><span style="font-size:11px;color:var(--gray);">Bitcoin</span></span></span></td>
+              <td style="font-family:'Share Tech Mono',monospace">0.02</td><td style="font-family:'Share Tech Mono',monospace">R$390k</td><td style="font-family:'Share Tech Mono',monospace">R$430k</td>
+              <td class="td-right up">+R$800<span>+10,25%</span></td><td class="td-right">17,8%</td>
+            </tr>
+            <tr>
+              <td><span class="asset-logo-cell"><span class="asset-logo" style="background:linear-gradient(135deg,#1e293b,#334155);color:#94a3b8;">BB</span><span><strong style="font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--white);">BBDC4</strong><br><span style="font-size:11px;color:var(--gray);">Bradesco PN</span></span></span></td>
+              <td style="font-family:'Share Tech Mono',monospace">400</td><td style="font-family:'Share Tech Mono',monospace">R$14,80</td><td style="font-family:'Share Tech Mono',monospace">R$15,40</td>
+              <td class="td-right up">+R$240<span>+4,05%</span></td><td class="td-right">12,7%</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="alloc-section">
+        <article class="alloc-card">
+          <h3 class="alloc-title">ALOCAÇÃO <em>POR TIPO</em></h3>
+          <ul class="alloc-list">
+            <li class="alloc-item"><span class="alloc-dot" style="background:#dc2626"></span><span class="alloc-label">Ações</span><span class="alloc-bar-wrap"><span class="alloc-bar" style="width:62%;background:#dc2626"></span></span><span class="alloc-pct">62%</span></li>
+            <li class="alloc-item"><span class="alloc-dot" style="background:#b45309"></span><span class="alloc-label">Cripto</span><span class="alloc-bar-wrap"><span class="alloc-bar" style="width:18%;background:#b45309"></span></span><span class="alloc-pct">18%</span></li>
+            <li class="alloc-item"><span class="alloc-dot" style="background:#4b5563"></span><span class="alloc-label">FIIs</span><span class="alloc-bar-wrap"><span class="alloc-bar" style="width:12%;background:#4b5563"></span></span><span class="alloc-pct">12%</span></li>
+            <li class="alloc-item"><span class="alloc-dot" style="background:#374151"></span><span class="alloc-label">Renda Fixa</span><span class="alloc-bar-wrap"><span class="alloc-bar" style="width:8%;background:#374151"></span></span><span class="alloc-pct">8%</span></li>
+          </ul>
+        </article>
+        <article class="alloc-card">
+          <h3 class="alloc-title">HISTÓRICO <em>MENSAL</em></h3>
+          <svg width="100%" height="180" viewBox="0 0 260 140">
+            <defs><linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" style="stop-color:#dc2626;stop-opacity:1"/><stop offset="100%" style="stop-color:#8b0000;stop-opacity:0.4"/></linearGradient></defs>
+            <rect x="0"   y="90" width="28" height="40"  fill="url(#barGrad)" rx="2"/>
+            <rect x="38"  y="70" width="28" height="60"  fill="url(#barGrad)" rx="2"/>
+            <rect x="76"  y="80" width="28" height="50"  fill="url(#barGrad)" rx="2"/>
+            <rect x="114" y="50" width="28" height="80"  fill="url(#barGrad)" rx="2"/>
+            <rect x="152" y="60" width="28" height="70"  fill="url(#barGrad)" rx="2"/>
+            <rect x="190" y="30" width="28" height="100" fill="url(#barGrad)" rx="2"/>
+            <rect x="228" y="10" width="28" height="120" fill="url(#barGrad)" rx="2"/>
+            <text x="0"   y="138" fill="#4b4b5a" font-family="Share Tech Mono" font-size="9">Set</text>
+            <text x="38"  y="138" fill="#4b4b5a" font-family="Share Tech Mono" font-size="9">Out</text>
+            <text x="76"  y="138" fill="#4b4b5a" font-family="Share Tech Mono" font-size="9">Nov</text>
+            <text x="114" y="138" fill="#4b4b5a" font-family="Share Tech Mono" font-size="9">Dez</text>
+            <text x="152" y="138" fill="#4b4b5a" font-family="Share Tech Mono" font-size="9">Jan</text>
+            <text x="190" y="138" fill="#4b4b5a" font-family="Share Tech Mono" font-size="9">Fev</text>
+            <text x="228" y="138" fill="#ef4444" font-family="Share Tech Mono" font-size="9">Mar</text>
+          </svg>
+        </article>
+      </section>
+    </span>
+  </section>
+
+  <!-- ===== MERCADO ===== -->
+  <section class="page-view" id="view-mercado">
+    <span class="inner-page">
+      <h1 class="page-title">VISÃO DO <em>MERCADO</em></h1>
+      <p class="page-sub">// B3 — Sessão aberta · IBOV +0,87% · Vol. R$18,4bi</p>
+      <section class="ticker-bar">
+        <span class="ticker-scroll">
+          <span class="t-up">PETR4 ▲ +2.30%</span><span class="t-dn">VALE3 ▼ -0.80%</span><span class="t-up">ITUB4 ▲ +1.10%</span><span class="t-up">BBDC4 ▲ +0.50%</span><span class="t-dn">MGLU3 ▼ -3.20%</span><span class="t-up">WEGE3 ▲ +0.90%</span><span class="t-up">BTC ▲ +4.70%</span><span class="t-up">ETH ▲ +2.90%</span>
+          <span class="t-up">PETR4 ▲ +2.30%</span><span class="t-dn">VALE3 ▼ -0.80%</span><span class="t-up">ITUB4 ▲ +1.10%</span><span class="t-up">BBDC4 ▲ +0.50%</span><span class="t-dn">MGLU3 ▼ -3.20%</span><span class="t-up">WEGE3 ▲ +0.90%</span><span class="t-up">BTC ▲ +4.70%</span><span class="t-up">ETH ▲ +2.90%</span>
+        </span>
+      </section>
+      <nav class="market-tabs">
+        <button class="mtab active" onclick="switchMarketTab(this,'acoes')">AÇÕES</button>
+        <button class="mtab" onclick="switchMarketTab(this,'fiis')">FIIs</button>
+        <button class="mtab" onclick="switchMarketTab(this,'cripto')">CRIPTO</button>
+        <button class="mtab" onclick="switchMarketTab(this,'indices')">ÍNDICES</button>
+      </nav>
+      <section class="market-table-wrap">
+        <table class="market-table">
+          <thead><tr><th>#</th><th>Ativo</th><th class="td-r">Preço</th><th class="td-r">Variação</th><th class="td-r">Volume</th><th class="td-r">Score IA</th></tr></thead>
+          <tbody id="marketBody"></tbody>
+        </table>
+      </section>
+    </span>
+  </section>
+
+  <!-- ===== ANÁLISE IA ===== -->
+  <section class="page-view" id="view-analise">
+    <span class="inner-page">
+      <h1 class="page-title">ANÁLISE <em>IA</em></h1>
+      <p class="page-sub">// motor OMEGA v3.2 · último scan: 2 min atrás</p>
+      <section class="score-section">
+        <article class="score-card">
+          <svg width="120" height="120" viewBox="0 0 120 120" style="overflow:visible">
+            <circle class="ring-bg" cx="60" cy="60" r="50"/>
+            <circle class="ring-fg" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="40"/>
+          </svg>
+          <p class="score-number">87</p>
+          <p class="score-lbl">SCORE OMEGA</p>
+          <p style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray);text-align:center;">Perfil Moderado<br>▲ +3pts esta semana</p>
+        </article>
+        <article class="insights-card">
+          <h3 class="ic-title">INSIGHTS <em>DO DIA</em></h3>
+          <ul class="insight-list">
+            <li class="insight-item"><span class="insight-icon">🔥</span><span class="insight-text"><strong>PETR4 em zona de oportunidade</strong><p>Rompeu a média de 20 períodos com volume 40% acima do normal. RSI em 58 — não sobrecomprado.</p><span class="insight-badge badge-buy">COMPRAR</span></span></li>
+            <li class="insight-item"><span class="insight-icon">⚠️</span><span class="insight-text"><strong>VALE3 em tendência de queda</strong><p>Correlação com minério negativa. Risco de suporte em R$60 não ser mantido.</p><span class="insight-badge badge-warn">ATENÇÃO</span></span></li>
+            <li class="insight-item"><span class="insight-icon">₿</span><span class="insight-text"><strong>Bitcoin — momentum altista</strong><p>Rompeu resistência de R$420k. Próximo alvo: R$450k. Sentimento: 72/100.</p><span class="insight-badge badge-buy">MANTER</span></span></li>
+            <li class="insight-item"><span class="insight-icon">📊</span><span class="insight-text"><strong>Diversificação recomendada</strong><p>70% em renda variável aumenta risco. Rebalancear 10% para FIIs ou renda fixa.</p><span class="insight-badge badge-hold">REBALANCEAR</span></span></li>
+          </ul>
+        </article>
+      </section>
+      <section class="pred-section">
+        <header class="pred-header">
+          <h2 class="pred-title">PREVISÕES <em>IA — 7 DIAS</em></h2>
+          <span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray);">OMEGA-v3.2</span>
+        </header>
+        <table class="pred-table">
+          <thead><tr><th>Ativo</th><th>Preço Atual</th><th>Alvo 7D</th><th>Variação</th><th>Confiança</th><th>Sinal</th></tr></thead>
+          <tbody>
+            <tr><td><strong style="color:var(--white)">PETR4</strong></td><td>R$37,48</td><td style="color:var(--red-glow)">R$39,20</td><td class="up">+4,59%</td><td><span>78%</span><span class="conf-bar"><span class="conf-fill" style="width:78%"></span></span></td><td><span class="insight-badge badge-buy">COMPRA</span></td></tr>
+            <tr><td><strong style="color:var(--white)">VALE3</strong></td><td>R$62,14</td><td style="color:#6b7280">R$60,50</td><td class="dn">-2,64%</td><td><span>65%</span><span class="conf-bar"><span class="conf-fill" style="width:65%;background:linear-gradient(90deg,#374151,#6b7280)"></span></span></td><td><span class="insight-badge badge-sell">VENDA</span></td></tr>
+            <tr><td><strong style="color:var(--white)">ITUB4</strong></td><td>R$32,15</td><td style="color:var(--red-glow)">R$33,80</td><td class="up">+5,13%</td><td><span>71%</span><span class="conf-bar"><span class="conf-fill" style="width:71%"></span></span></td><td><span class="insight-badge badge-hold">MANTER</span></td></tr>
+            <tr><td><strong style="color:var(--white)">BTC</strong></td><td>R$430k</td><td style="color:var(--red-glow)">R$455k</td><td class="up">+5,81%</td><td><span>62%</span><span class="conf-bar"><span class="conf-fill" style="width:62%"></span></span></td><td><span class="insight-badge badge-buy">COMPRA</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+    </span>
+  </section>
+
+  <!-- ===== ALERTAS ===== -->
+  <section class="page-view" id="view-alertas">
+    <span class="inner-page">
+      <h1 class="page-title">CENTRAL DE <em>ALERTAS</em></h1>
+      <p class="page-sub">// 3 alertas ativos · 2 disparados hoje</p>
+      <section class="alert-stats">
+        <article class="stat-pill"><p class="stat-pill-num" style="color:var(--red-glow)">3</p><p class="stat-pill-lbl">Ativos</p></article>
+        <article class="stat-pill"><p class="stat-pill-num" style="color:#f59e0b">2</p><p class="stat-pill-lbl">Disparados</p></article>
+        <article class="stat-pill"><p class="stat-pill-num" style="color:var(--gray)">8</p><p class="stat-pill-lbl">Arquivados</p></article>
+        <article class="stat-pill"><p class="stat-pill-num">5</p><p class="stat-pill-lbl">Configurados</p></article>
+      </section>
+      <section class="alerts-container" id="alertsContainer">
+        <article class="alert-item urgent">
+          <span class="alert-icon-wrap red">🔥</span>
+          <span class="alert-body"><p class="alert-title">PETR4 atingiu alvo de preço</p><p class="alert-desc">Ultrapassou R$37,00 — operando em +2,3%. Possível momento de realização de lucro.</p><span class="alert-meta"><span class="alert-asset">PETR4</span><time class="alert-time-tag">há 12 min</time></span></span>
+          <span class="alert-action"><button class="btn-goto" onclick="navigate('portfolio')">Ver ativo</button><button class="btn-dismiss" onclick="dismissAlert(this)">Dispensar</button></span>
+        </article>
+        <article class="alert-item urgent">
+          <span class="alert-icon-wrap yellow">⚠️</span>
+          <span class="alert-body"><p class="alert-title">VALE3 abaixo da média móvel 20</p><p class="alert-desc">Cruzou abaixo da MM20 pela segunda vez esta semana — sinal de possível continuação de baixa.</p><span class="alert-meta"><span class="alert-asset">VALE3</span><time class="alert-time-tag">há 38 min</time></span></span>
+          <span class="alert-action"><button class="btn-goto" onclick="navigate('analise')">Ver análise</button><button class="btn-dismiss" onclick="dismissAlert(this)">Dispensar</button></span>
+        </article>
+        <article class="alert-item">
+          <span class="alert-icon-wrap gray">📊</span>
+          <span class="alert-body"><p class="alert-title">Revisão semanal disponível</p><p class="alert-desc">Relatório de performance gerado pela OMEGA IA. Confira insights e oportunidades.</p><span class="alert-meta"><span class="alert-asset">PORTFÓLIO</span><time class="alert-time-tag">há 2h</time></span></span>
+          <span class="alert-action"><button class="btn-goto" onclick="navigate('analise')">Ver relatório</button><button class="btn-dismiss" onclick="dismissAlert(this)">Dispensar</button></span>
+        </article>
+        <article class="alert-item">
+          <span class="alert-icon-wrap gray">₿</span>
+          <span class="alert-body"><p class="alert-title">Bitcoin — Stop loss próximo</p><p class="alert-desc">BTC está a 3,2% do stop loss em R$415k. Monitore a posição de perto.</p><span class="alert-meta"><span class="alert-asset">BTC</span><time class="alert-time-tag">há 4h</time></span></span>
+          <span class="alert-action"><button class="btn-goto" onclick="navigate('portfolio')">Ver posição</button><button class="btn-dismiss" onclick="dismissAlert(this)">Dispensar</button></span>
+        </article>
+      </section>
+      <section class="new-alert-section">
+        <h3 class="na-title">CRIAR NOVO <em>ALERTA</em></h3>
+        <fieldset class="alert-form">
+          <span><label class="field-label" for="alert-asset">Ativo</label><input class="field-input" id="alert-asset" type="text" placeholder="Ex: PETR4"></span>
+          <span><label class="field-label" for="alert-type">Tipo</label><select class="field-input" id="alert-type"><option>Preço acima de</option><option>Preço abaixo de</option><option>Variação % no dia</option><option>Volume acima de</option></select></span>
+          <span><label class="field-label" for="alert-value">Valor</label><input class="field-input" id="alert-value" type="text" placeholder="Ex: R$40,00"></span>
+          <button class="btn-create" onclick="createAlert()">+ CRIAR</button>
+        </fieldset>
+      </section>
+    </span>
+  </section>
+
+  <!-- ===== NEGOCIAR ===== -->
+  <section class="page-view" id="view-negociar">
+    <span class="inner-page">
+      <h1 class="page-title">NEGOCIAR <em>ATIVOS</em></h1>
+      <p class="page-sub">// B3 · Crypto · Simulação de ordens · OMEGA IA assistindo</p>
+
+      <section style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+        <article class="metric-card" style="cursor:default;">
+          <p class="metric-label">Saldo Disponível</p>
+          <p class="metric-value">R$ 5.200,00</p>
+          <p class="metric-sub">Para ordens de compra</p>
+        </article>
+        <article class="metric-card" style="cursor:default;">
+          <p class="metric-label">Ordens hoje</p>
+          <p class="metric-value" style="color:var(--red-glow)">3</p>
+          <p class="metric-sub">2 executadas · 1 pendente</p>
+        </article>
+      </section>
+
+      <!-- Tabs: Comprar | Vender | Simular -->
+      <nav class="market-tabs" style="margin-bottom:20px;">
+        <button class="mtab active" onclick="switchTradeTab(this,'comprar')">COMPRAR</button>
+        <button class="mtab" onclick="switchTradeTab(this,'vender')">VENDER</button>
+        <button class="mtab" onclick="switchTradeTab(this,'simular')">SIMULAR</button>
+        <button class="mtab" onclick="switchTradeTab(this,'ordens')">ORDENS</button>
+      </nav>
+
+      <!-- COMPRAR -->
+      <div id="trade-comprar" class="trade-panel">
+        <section style="display:grid;grid-template-columns:1.2fr 1fr;gap:20px;align-items:start;">
+          <article style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px;">
+            <h3 style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--white);margin-bottom:20px;">ORDEM DE <em style="color:var(--red-bright)">COMPRA</em></h3>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div>
+                <label class="field-label">Ativo</label>
+                <select class="field-input" id="buy-asset" onchange="updateTradePrice('buy')">
+                  <option value="PETR4|37.48">PETR4 — Petrobras PN</option>
+                  <option value="VALE3|62.14">VALE3 — Vale ON</option>
+                  <option value="ITUB4|32.15">ITUB4 — Itaú Unibanco</option>
+                  <option value="BBDC4|15.40">BBDC4 — Bradesco PN</option>
+                  <option value="WEGE3|48.70">WEGE3 — WEG ON</option>
+                  <option value="MGLU3|5.12">MGLU3 — Magazine Luiza</option>
+                  <option value="BTC|430800">BTC — Bitcoin</option>
+                  <option value="ETH|22100">ETH — Ethereum</option>
+                  <option value="SOL|780">SOL — Solana</option>
+                  <option value="MXRF11|10.12">MXRF11 — Maxi Renda FII</option>
+                  <option value="HGLG11|168.50">HGLG11 — CSHG Logística</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label">Tipo de Ordem</label>
+                <select class="field-input" id="buy-order-type" onchange="toggleLimitPrice('buy')">
+                  <option value="mercado">A Mercado (execução imediata)</option>
+                  <option value="limitada">Limitada (defina o preço)</option>
+                  <option value="stop">Stop Loss</option>
+                  <option value="stop-gain">Stop Gain</option>
+                </select>
+              </div>
+              <div id="buy-limit-price-wrap" style="display:none;">
+                <label class="field-label">Preço Limite (R$)</label>
+                <input class="field-input" id="buy-limit-price" type="number" step="0.01" placeholder="0,00">
+              </div>
+              <div>
+                <label class="field-label">Quantidade</label>
+                <input class="field-input" id="buy-qty" type="number" min="1" value="100" oninput="calcTradeTotal('buy')">
+              </div>
+              <div style="background:var(--dark);border:1px solid var(--border);border-radius:6px;padding:14px;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray);">Preço unitário</span>
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--white);" id="buy-unit-price">R$ 37,48</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray);">Corretagem</span>
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--white);">R$ 0,00</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:8px;">
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--white);font-weight:bold;">Total estimado</span>
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:14px;color:var(--red-glow);font-weight:bold;" id="buy-total">R$ 3.748,00</span>
+                </div>
+              </div>
+              <button onclick="executeOrder('compra')" style="background:var(--red-bright);color:white;border:none;padding:14px;border-radius:6px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;cursor:pointer;box-shadow:0 0 20px rgba(220,38,38,.4);transition:all .2s;" onmouseover="this.style.boxShadow='0 0 32px rgba(239,68,68,.6)'" onmouseout="this.style.boxShadow='0 0 20px rgba(220,38,38,.4)'">
+                ⚡ ENVIAR ORDEM DE COMPRA
+              </button>
+              <p style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray);text-align:center;line-height:1.5;">⚠ Simulação educacional · Nenhuma ordem real é executada · Não constitui recomendação de investimento</p>
+            </div>
+          </article>
+
+          <!-- Info do ativo selecionado -->
+          <article style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px;">
+            <h3 style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:var(--white);margin-bottom:16px;">INFO DO <em style="color:var(--red-bright)">ATIVO</em></h3>
+            <div id="trade-asset-info" style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);">
+                <span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray);">Preço atual</span>
+                <span style="font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--white);" id="info-price">R$ 37,48</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);">
+                <span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray);">Variação dia</span>
+                <span style="font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--red-glow);" id="info-chg">▲ +2,30%</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);">
+                <span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray);">Score OMEGA</span>
+                <span style="font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--red-glow);" id="info-score">82/100</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);">
+                <span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray);">Sinal IA</span>
+                <span id="info-signal" style="font-family:'Share Tech Mono',monospace;font-size:12px;background:rgba(220,38,38,.15);color:var(--red-bright);padding:2px 8px;border-radius:4px;">COMPRAR</span>
+              </div>
+              <div style="padding:8px 0;border-bottom:1px solid var(--border);">
+                <span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray);">Análise OMEGA IA</span>
+                <p style="font-size:12px;color:var(--light);margin-top:6px;line-height:1.6;" id="info-analysis">PETR4 em momento técnico positivo. Operando acima da MM20 com RSI neutro em 58. Suporte forte em R$35,80. Volume acima da média indica interesse comprador.</p>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:8px 0;">
+                <span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray);">Previsão 7D</span>
+                <span style="font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--red-glow);">R$ 39,20 (+4,59%)</span>
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
+
+      <!-- VENDER -->
+      <div id="trade-vender" class="trade-panel" style="display:none;">
+        <section style="display:grid;grid-template-columns:1.2fr 1fr;gap:20px;align-items:start;">
+          <article style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px;">
+            <h3 style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--white);margin-bottom:20px;">ORDEM DE <em style="color:#6b7280">VENDA</em></h3>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div>
+                <label class="field-label">Posição em carteira</label>
+                <select class="field-input" id="sell-asset" onchange="updateSellInfo()">
+                  <option value="PETR4|37.48|200|35.10">PETR4 · 200 cotas · PM: R$35,10</option>
+                  <option value="VALE3|62.14|100|65.00">VALE3 · 100 cotas · PM: R$65,00</option>
+                  <option value="ITUB4|32.15|300|30.20">ITUB4 · 300 cotas · PM: R$30,20</option>
+                  <option value="BBDC4|15.40|400|14.80">BBDC4 · 400 cotas · PM: R$14,80</option>
+                  <option value="BTC|430800|0.02|390000">BTC · 0,02 BTC · PM: R$390k</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label">Tipo de Ordem</label>
+                <select class="field-input" id="sell-order-type">
+                  <option>A Mercado</option>
+                  <option>Limitada</option>
+                  <option>Stop Loss</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label">Quantidade a vender</label>
+                <input class="field-input" id="sell-qty" type="number" min="1" value="100" oninput="calcSellTotal()">
+              </div>
+              <div style="background:var(--dark);border:1px solid var(--border);border-radius:6px;padding:14px;" id="sell-summary">
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray);">Preço médio de compra</span>
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--white);" id="sell-pm">R$ 35,10</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray);">Preço atual</span>
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--white);" id="sell-current">R$ 37,48</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray);">Resultado estimado</span>
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:12px;" id="sell-result" class="up">+R$ 238,00 (+6,78%)</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:8px;">
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--white);">Total a receber</span>
+                  <span style="font-family:'Share Tech Mono',monospace;font-size:14px;color:var(--red-glow);" id="sell-total">R$ 3.748,00</span>
+                </div>
+              </div>
+              <button onclick="executeOrder('venda')" style="background:#374151;color:white;border:1px solid #6b7280;padding:14px;border-radius:6px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='#4b5563'" onmouseout="this.style.background='#374151'">
+                ENVIAR ORDEM DE VENDA
+              </button>
+              <p style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray);text-align:center;">⚠ Simulação educacional · Nenhuma ordem real é executada</p>
+            </div>
+          </article>
+          <article style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px;">
+            <h3 style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:var(--white);margin-bottom:16px;">POSIÇÃO <em style="color:var(--red-bright)">ATUAL</em></h3>
+            <div style="display:flex;flex-direction:column;gap:10px;" id="sell-position-info">
+              <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);">
+                <span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray);">Qtd. em carteira</span>
+                <span style="font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--white);">200 cotas</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);">
+                <span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray);">Valor investido</span>
+                <span style="font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--white);">R$ 7.020,00</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);">
+                <span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray);">Valor atual</span>
+                <span style="font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--white);">R$ 7.496,00</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;padding:8px 0;">
+                <span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray);">Lucro/Prejuízo</span>
+                <span style="font-family:'Share Tech Mono',monospace;font-size:13px;" class="up">+R$ 476,00 (+6,78%)</span>
+              </div>
+              <div style="background:rgba(220,38,38,.08);border:1px solid rgba(220,38,38,.2);border-radius:6px;padding:12px;margin-top:8px;">
+                <p style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--red-glow);margin-bottom:6px;">💡 OMEGA IA sugere:</p>
+                <p style="font-size:12px;color:var(--light);line-height:1.5;">Considere realizar parcial de 30% do lucro e manter o restante. RSI próximo de 60 — ainda não sobrecomprado.</p>
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
+
+      <!-- SIMULAR -->
+      <div id="trade-simular" class="trade-panel" style="display:none;">
+        <section style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+          <article style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px;">
+            <h3 style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--white);margin-bottom:20px;">SIMULAÇÃO DE <em style="color:var(--red-bright)">INVESTIMENTO</em></h3>
+            <div style="display:flex;flex-direction:column;gap:14px;">
+              <div>
+                <label class="field-label">Ativo</label>
+                <select class="field-input" id="sim-asset">
+                  <option value="PETR4|37.48|0.12">PETR4 — Petrobras PN</option>
+                  <option value="VALE3|62.14|0.08">VALE3 — Vale ON</option>
+                  <option value="ITUB4|32.15|0.15">ITUB4 — Itaú Unibanco</option>
+                  <option value="WEGE3|48.70|0.18">WEGE3 — WEG ON</option>
+                  <option value="BTC|430800|0.85">BTC — Bitcoin</option>
+                  <option value="ETH|22100|0.60">ETH — Ethereum</option>
+                  <option value="MXRF11|10.12|0.09">MXRF11 — Maxi Renda FII</option>
+                  <option value="HGLG11|168.50|0.11">HGLG11 — CSHG Logística</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label">Valor a investir (R$)</label>
+                <input class="field-input" id="sim-valor" type="number" value="5000" min="100" oninput="runSimulation()">
+              </div>
+              <div>
+                <label class="field-label">Período</label>
+                <select class="field-input" id="sim-periodo" onchange="runSimulation()">
+                  <option value="1">1 ano</option>
+                  <option value="2">2 anos</option>
+                  <option value="5" selected>5 anos</option>
+                  <option value="10">10 anos</option>
+                  <option value="20">20 anos</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label">Aporte mensal adicional (R$)</label>
+                <input class="field-input" id="sim-aporte" type="number" value="500" min="0" oninput="runSimulation()">
+              </div>
+              <button onclick="runSimulation()" style="background:var(--red-bright);color:white;border:none;padding:12px;border-radius:6px;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;cursor:pointer;">
+                ▶ SIMULAR
+              </button>
+            </div>
+          </article>
+
+          <article style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px;" id="sim-result-card">
+            <h3 style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:var(--white);margin-bottom:16px;">RESULTADO <em style="color:var(--red-bright)">PROJETADO</em></h3>
+            <div style="display:flex;flex-direction:column;gap:10px;" id="sim-results">
+              <div style="text-align:center;padding:20px 0;">
+                <p style="font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--red-glow);letter-spacing:2px;" id="sim-final-value">R$ 36.874</p>
+                <p style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray);margin-top:4px;">Valor projetado ao final do período</p>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <div style="background:var(--dark);border-radius:6px;padding:12px;text-align:center;">
+                  <p style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray);margin-bottom:4px;">Investido total</p>
+                  <p style="font-family:'Share Tech Mono',monospace;font-size:14px;color:var(--white);" id="sim-total-inv">R$ 35.000</p>
+                </div>
+                <div style="background:var(--dark);border-radius:6px;padding:12px;text-align:center;">
+                  <p style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray);margin-bottom:4px;">Lucro estimado</p>
+                  <p style="font-family:'Share Tech Mono',monospace;font-size:14px;" id="sim-lucro" class="up">+R$ 1.874</p>
+                </div>
+                <div style="background:var(--dark);border-radius:6px;padding:12px;text-align:center;">
+                  <p style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray);margin-bottom:4px;">Rentabilidade</p>
+                  <p style="font-family:'Share Tech Mono',monospace;font-size:14px;" id="sim-rent" class="up">+5,35%</p>
+                </div>
+                <div style="background:var(--dark);border-radius:6px;padding:12px;text-align:center;">
+                  <p style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray);margin-bottom:4px;">Cotas adquiridas</p>
+                  <p style="font-family:'Share Tech Mono',monospace;font-size:14px;color:var(--white);" id="sim-cotas">133</p>
+                </div>
+              </div>
+              <div style="background:rgba(220,38,38,.08);border:1px solid rgba(220,38,38,.2);border-radius:6px;padding:12px;margin-top:4px;">
+                <p style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--red-glow);margin-bottom:6px;">💡 Análise OMEGA IA:</p>
+                <p style="font-size:12px;color:var(--light);line-height:1.5;" id="sim-ai-comment">Com base no histórico do ativo e sua volatilidade, essa é uma projeção conservadora. Aportes mensais regulares reduzem o risco via preço médio.</p>
+              </div>
+              <p style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray);text-align:center;">⚠ Projeção baseada em retorno histórico médio · Rentabilidade passada não garante resultados futuros</p>
+            </div>
+          </article>
+        </section>
+      </div>
+
+      <!-- ORDENS -->
+      <div id="trade-ordens" class="trade-panel" style="display:none;">
+        <article style="background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+          <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+            <h3 style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:var(--white);">HISTÓRICO DE <em style="color:var(--red-bright)">ORDENS</em></h3>
+            <span style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray);">últimas 30 ordens simuladas</span>
+          </div>
+          <table class="market-table" id="ordens-table">
+            <thead><tr><th>Data/Hora</th><th>Ativo</th><th>Tipo</th><th class="td-r">Qtd.</th><th class="td-r">Preço</th><th class="td-r">Total</th><th class="td-r">Status</th></tr></thead>
+            <tbody id="ordens-body">
+              <tr>
+                <td style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray)">25/03 14:32</td>
+                <td><strong style="color:var(--white);font-family:'Share Tech Mono',monospace;font-size:12px">PETR4</strong></td>
+                <td><span style="background:rgba(220,38,38,.15);color:var(--red-bright);padding:2px 8px;border-radius:4px;font-size:11px;font-family:'Share Tech Mono',monospace">COMPRA</span></td>
+                <td class="td-r" style="font-family:'Share Tech Mono',monospace;font-size:12px">100</td>
+                <td class="td-r" style="font-family:'Share Tech Mono',monospace;font-size:12px">R$37,48</td>
+                <td class="td-r" style="font-family:'Share Tech Mono',monospace;font-size:12px">R$3.748</td>
+                <td class="td-r"><span style="background:rgba(34,197,94,.1);color:#4ade80;padding:2px 8px;border-radius:4px;font-size:11px;font-family:'Share Tech Mono',monospace">EXECUTADA</span></td>
+              </tr>
+              <tr>
+                <td style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray)">25/03 11:15</td>
+                <td><strong style="color:var(--white);font-family:'Share Tech Mono',monospace;font-size:12px">BTC</strong></td>
+                <td><span style="background:rgba(220,38,38,.15);color:var(--red-bright);padding:2px 8px;border-radius:4px;font-size:11px;font-family:'Share Tech Mono',monospace">COMPRA</span></td>
+                <td class="td-r" style="font-family:'Share Tech Mono',monospace;font-size:12px">0.01</td>
+                <td class="td-r" style="font-family:'Share Tech Mono',monospace;font-size:12px">R$428k</td>
+                <td class="td-r" style="font-family:'Share Tech Mono',monospace;font-size:12px">R$4.280</td>
+                <td class="td-r"><span style="background:rgba(34,197,94,.1);color:#4ade80;padding:2px 8px;border-radius:4px;font-size:11px;font-family:'Share Tech Mono',monospace">EXECUTADA</span></td>
+              </tr>
+              <tr>
+                <td style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray)">24/03 16:44</td>
+                <td><strong style="color:var(--white);font-family:'Share Tech Mono',monospace;font-size:12px">VALE3</strong></td>
+                <td><span style="background:rgba(107,114,128,.15);color:#9ca3af;padding:2px 8px;border-radius:4px;font-size:11px;font-family:'Share Tech Mono',monospace">VENDA</span></td>
+                <td class="td-r" style="font-family:'Share Tech Mono',monospace;font-size:12px">50</td>
+                <td class="td-r" style="font-family:'Share Tech Mono',monospace;font-size:12px">R$62,14</td>
+                <td class="td-r" style="font-family:'Share Tech Mono',monospace;font-size:12px">R$3.107</td>
+                <td class="td-r"><span style="background:rgba(34,197,94,.1);color:#4ade80;padding:2px 8px;border-radius:4px;font-size:11px;font-family:'Share Tech Mono',monospace">EXECUTADA</span></td>
+              </tr>
+              <tr>
+                <td style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--gray)">24/03 09:02</td>
+                <td><strong style="color:var(--white);font-family:'Share Tech Mono',monospace;font-size:12px">ITUB4</strong></td>
+                <td><span style="background:rgba(220,38,38,.15);color:var(--red-bright);padding:2px 8px;border-radius:4px;font-size:11px;font-family:'Share Tech Mono',monospace">COMPRA</span></td>
+                <td class="td-r" style="font-family:'Share Tech Mono',monospace;font-size:12px">200</td>
+                <td class="td-r" style="font-family:'Share Tech Mono',monospace;font-size:12px">R$31,90</td>
+                <td class="td-r" style="font-family:'Share Tech Mono',monospace;font-size:12px">R$6.380</td>
+                <td class="td-r"><span style="background:rgba(245,158,11,.1);color:#fbbf24;padding:2px 8px;border-radius:4px;font-size:11px;font-family:'Share Tech Mono',monospace">PENDENTE</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
+
+    </span>
+  </section>
+
+</section><!-- /content-area -->
+</main>
+
+
+<script src="../JS/market.js"></script>
+<script src="../JS/auth.js"></script>
+<script src="../JS/chart.js"></script>
+<script src="../JS/chat.js"></script>
+<script src="../JS/trading.js"></script>
+<script src="../JS/ui.js"></script>
+<script src="../JS/index.js"></script>
+</body>
+</html>

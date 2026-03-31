@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="InvestX — Inteligência Artificial para investimentos">
+  <title>InvestX — Sua IA de Investimentos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../CSS/style.css">
+  <link rel="stylesheet" href="../CSS/auth.css">
+  <link rel="stylesheet" href="../CSS/home.css">
+</head>
+<body>
+
+<!-- ======= NAV ======= -->
+<header class="landing-nav">
+  <span class="logo">
+    <span class="logo-icon">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAD7UlEQVR4AdSWV6gVVxSGJ4UUUiAJCSmQnkAaJHlJh7Q3RR+sWLFg7ygqghUUG/aOCHYsWFDwxYodLNjwwd4VFAUVG+r3zZ193Gc8997jk3j4/7XWXmvPrDl7r12eT57S75lJ7If+xiA1gj0zav+KbQxVHsrt/C2vmwYvwa1wHhyZUXsbtrHJaPuiqkZ1id/n8RXwIGwD34GVwVh7gvZdgn4PVoqqEn/BU/6TWmhxH7ES9oc14QcZtQdgG3uAFnUQ2+FnsCQqS/wJvU36KVocR/wOa8MhcDW8kFF7MLaxP9CnoDCpyT+2kWepxC/TaRV8F4rpiO/hDhjgBw2kIbUxU/ix32HNgMLhXobhO1GPUCrxaMImQiUTEW3hTRjjTxoOr4wT406uI6yHKWjxM2IYLEI+8ZdE20FxFNELxmhK4xicAwPmYvSBz8EYPnsyc3RBfw0LyCd2bb5A1EJqgL4FA2zPpuHcoQr4CMt/NAEd4waNxtCC852dsQuIE/vF9bKIa3VXZgflR2nfQfiP/fctsfdA0RHxFoyxhUaoDSvdHLiSJE78F563obAa1TF/yBrj0c2gQzwLXR8OyvgqOg8LTp/Lzx1Ouyjxj6mnQpRKfL4ilJjUoa1L+2/4BrS65TnsPEJi/T8pZPyPX9eRcWOmY2WF23aJWEyLaayHu6HDbQFhPoY48ZshGid27oL/xWBEegy2CQ+h83C0xuFsAfO4FznuBjtO7CYf/L4o2EFb6cNpuEH8gv4HWowj0Neg6KrIsTC8+N3tUMXFtT/1VIhSifsSch5roHfCDdDDoDd6ORSfK3KMExdyxP/YebqSPVQqcTgMFtLH3c3iaoLt0mqOFocVOYbEV/HvgynixDrWKqAbftFOg687dDu0CHtgW1wmNTnNxLkMa922/ArhB6OSNYrAfOJJWeAV9FL4EgxweF3rVnLwBe3p9T+NTTDAZz0gfJe+sYrAfGKXkQe/cQ8Ki0k7cC/Gv9BhRqVwB3NufTZ1ZMLpsBBtLkKEHQyzuLhSB6IVDGdqN2yPuNfQMdxOw261OQ5gu6HMRHeCwsOmg0bM/D82dhnxH7wIRWuEa9ddCjPFCaQVLrVppnCJHcByD0clvsMp8J22CyyV2OARhOdo2Dq9RTi33qe80DUk/iH0LPaWORXbj1uHti8q8YCwouMP05+yssQG3XctJu9Yt3VAb5Be6BZgn4UWlbdMLwvf0Bb27YfhCIX9nWYxqkpsT5eIdyyXhTeKx4bMThmN2cfLxFB8PosqjeoSh6dOY1ggHhBe6D3gvWFIbX3G7HOGvtWi3MThRe7Xzvt8HKMyauszhqs8PGni8t5aRq+HAAAA//++iSM6AAAABklEQVQDAPdMuT25PGg0AAAAAElFTkSuQmCC" alt="X">
+    </span>
+    Invest<em>X</em>
+  </span>
+  <nav class="nav-links">
+    <a href="#recursos">Recursos</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#depoimentos">Depoimentos</a>
+    <a href="login.html" class="nav-btn-login">Entrar</a>
+    <a href="register.html" class="nav-btn-signup">Começar Grátis</a>
+  </nav>
+</header>
+
+<!-- ======= TICKER CONTÍNUO ======= -->
+<div class="landing-ticker-wrap">
+  <!-- Preenchido por app.js — duplicado automaticamente para loop sem corte -->
+  <span id="tickerTrack">
+    <span class="t-up">PETR4 ▲ +2.30%&nbsp;&nbsp;&nbsp;</span>
+    <span class="t-dn">VALE3 ▼ -0.80%&nbsp;&nbsp;&nbsp;</span>
+    <span class="t-up">ITUB4 ▲ +1.10%&nbsp;&nbsp;&nbsp;</span>
+    <span class="t-up">BTC ▲ +4.70%&nbsp;&nbsp;&nbsp;</span>
+    <span class="t-up">ETH ▲ +2.90%&nbsp;&nbsp;&nbsp;</span>
+    <span class="t-dn">MGLU3 ▼ -3.20%&nbsp;&nbsp;&nbsp;</span>
+    <span class="t-up">WEGE3 ▲ +0.90%&nbsp;&nbsp;&nbsp;</span>
+    <span class="t-up">IBOV ▲ +0.87%&nbsp;&nbsp;&nbsp;</span>
+    <span class="t-up">PETR4 ▲ +2.30%&nbsp;&nbsp;&nbsp;</span>
+    <span class="t-dn">VALE3 ▼ -0.80%&nbsp;&nbsp;&nbsp;</span>
+    <span class="t-up">ITUB4 ▲ +1.10%&nbsp;&nbsp;&nbsp;</span>
+    <span class="t-up">BTC ▲ +4.70%&nbsp;&nbsp;&nbsp;</span>
+    <span class="t-up">ETH ▲ +2.90%&nbsp;&nbsp;&nbsp;</span>
+    <span class="t-dn">MGLU3 ▼ -3.20%&nbsp;&nbsp;&nbsp;</span>
+    <span class="t-up">WEGE3 ▲ +0.90%&nbsp;&nbsp;&nbsp;</span>
+    <span class="t-up">IBOV ▲ +0.87%&nbsp;&nbsp;&nbsp;</span>
+  </span>
+</div>
+
+<!-- ======= HERO ======= -->
+<section class="hero">
+  <p class="hero-label">MOTOR OMEGA v3.2 · IA DE INVESTIMENTOS · DADOS EM TEMPO REAL</p>
+  <h1 class="hero-title">INVEST<em>X</em><br>OMEGA IA</h1>
+  <p class="hero-sub">Análise de mercado em tempo real, insights personalizados e IA conversacional para tomar decisões mais inteligentes na B3 e além.</p>
+  <div class="hero-actions">
+    <a href="register.html" class="btn-cta primary">Criar conta grátis</a>
+    <a href="login.html" class="btn-cta secondary">Já tenho conta</a>
+  </div>
+
+  <!-- App mockup -->
+  <div class="hero-mockup">
+    <div class="mockup-bar">
+      <span class="mockup-dot" style="background:#dc2626"></span>
+      <span class="mockup-dot" style="background:#444"></span>
+      <span class="mockup-dot" style="background:#444"></span>
+      <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray);margin-left:8px">investx.app — Dashboard · <span style="color:var(--red-glow)" id="mockupTime"></span></span>
+    </div>
+    <div class="mockup-metrics">
+      <div class="mockup-metric">
+        <div class="mm-label">PATRIMÔNIO TOTAL</div>
+        <div class="mm-val">R$ 48.320</div>
+        <div class="mm-chg">▲ +R$1.240 hoje</div>
+      </div>
+      <div class="mockup-metric">
+        <div class="mm-label">RENTABILIDADE MÊS</div>
+        <div class="mm-val" style="color:var(--red-glow)">+8,4%</div>
+        <div class="mm-chg">▲ Acima do CDI</div>
+      </div>
+      <div class="mockup-metric">
+        <div class="mm-label">SCORE OMEGA IA</div>
+        <div class="mm-val">87/100</div>
+        <div class="mm-chg">▲ +3pts semana</div>
+      </div>
+      <div class="mockup-metric">
+        <div class="mm-label">POSIÇÕES ABERTAS</div>
+        <div class="mm-val">12</div>
+        <div class="mm-chg" style="color:var(--gray)">3 com alerta IA</div>
+      </div>
+    </div>
+    <!-- Mini fake chart -->
+    <div class="mockup-chart">
+      <svg class="mockup-chart-svg" viewBox="0 0 880 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="mcGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#dc2626" stop-opacity=".25"/>
+            <stop offset="100%" stop-color="#dc2626" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path d="M0,48 L44,44 L88,40 L132,36 L176,42 L220,34 L264,28 L308,32 L352,22 L396,18 L440,24 L484,14 L528,10 L572,16 L616,8 L660,12 L704,6 L748,10 L792,4 L836,8 L880,4" fill="none" stroke="#dc2626" stroke-width="1.5"/>
+        <path d="M0,48 L44,44 L88,40 L132,36 L176,42 L220,34 L264,28 L308,32 L352,22 L396,18 L440,24 L484,14 L528,10 L572,16 L616,8 L660,12 L704,6 L748,10 L792,4 L836,8 L880,4 L880,60 L0,60 Z" fill="url(#mcGrad)"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ======= STATS ======= -->
+<section class="stats-bar">
+  <div class="stat-item"><div class="stat-num" id="statAccuracy">87%</div><div class="stat-lbl">Acurácia da IA</div></div>
+  <div class="stat-item"><div class="stat-num" id="statUsers">12k+</div><div class="stat-lbl">Investidores</div></div>
+  <div class="stat-item"><div class="stat-num">R$2bi</div><div class="stat-lbl">Em portfólios</div></div>
+  <div class="stat-item"><div class="stat-num">24/7</div><div class="stat-lbl">Monitoramento IA</div></div>
+  <div class="stat-item"><div class="stat-num">0,00%</div><div class="stat-lbl">Taxa para começar</div></div>
+</section>
+
+<!-- ======= PREÇOS EM TEMPO REAL ======= -->
+<section class="live-prices-section" id="recursos">
+  <div class="section-header">
+    <h2>MERCADO EM <em>TEMPO REAL</em></h2>
+    <p>// cotações atualizadas automaticamente · última atualização: <span id="lastUpdateTime">agora</span></p>
+  </div>
+  <div class="live-prices-grid">
+    <div class="live-price-card">
+      <div class="lpc-dot"></div>
+      <div class="lpc-symbol">PETR4</div>
+      <div class="lpc-name">Petrobras PN</div>
+      <div class="lpc-price" id="lpc-petr4">R$ 37,48</div>
+      <div class="lpc-chg up" id="lpc-petr4-chg">▲ +2,30%</div>
+    </div>
+    <div class="live-price-card">
+      <div class="lpc-dot"></div>
+      <div class="lpc-symbol">VALE3</div>
+      <div class="lpc-name">Vale ON</div>
+      <div class="lpc-price" id="lpc-vale3">R$ 62,14</div>
+      <div class="lpc-chg dn" id="lpc-vale3-chg">▼ -0,80%</div>
+    </div>
+    <div class="live-price-card">
+      <div class="lpc-dot"></div>
+      <div class="lpc-symbol">BTC</div>
+      <div class="lpc-name">Bitcoin</div>
+      <div class="lpc-price" id="lpc-btc">R$ 430.800</div>
+      <div class="lpc-chg up" id="lpc-btc-chg">▲ +4,70%</div>
+    </div>
+    <div class="live-price-card">
+      <div class="lpc-dot"></div>
+      <div class="lpc-symbol">IBOV</div>
+      <div class="lpc-name">Ibovespa</div>
+      <div class="lpc-price" id="lpc-ibov">128.741</div>
+      <div class="lpc-chg up" id="lpc-ibov-chg">▲ +0,87%</div>
+    </div>
+    <div class="live-price-card">
+      <div class="lpc-dot"></div>
+      <div class="lpc-symbol">ETH</div>
+      <div class="lpc-name">Ethereum</div>
+      <div class="lpc-price" id="lpc-eth">R$ 22.100</div>
+      <div class="lpc-chg up" id="lpc-eth-chg">▲ +2,90%</div>
+    </div>
+    <div class="live-price-card">
+      <div class="lpc-dot"></div>
+      <div class="lpc-symbol">ITUB4</div>
+      <div class="lpc-name">Itaú Unibanco</div>
+      <div class="lpc-price" id="lpc-itub4">R$ 32,15</div>
+      <div class="lpc-chg up" id="lpc-itub4-chg">▲ +1,10%</div>
+    </div>
+    <div class="live-price-card">
+      <div class="lpc-dot"></div>
+      <div class="lpc-symbol">WEGE3</div>
+      <div class="lpc-name">WEG ON</div>
+      <div class="lpc-price" id="lpc-wege3">R$ 48,70</div>
+      <div class="lpc-chg up" id="lpc-wege3-chg">▲ +0,90%</div>
+    </div>
+    <div class="live-price-card">
+      <div class="lpc-dot"></div>
+      <div class="lpc-symbol">SOL</div>
+      <div class="lpc-name">Solana</div>
+      <div class="lpc-price" id="lpc-sol">R$ 780</div>
+      <div class="lpc-chg up" id="lpc-sol-chg">▲ +6,10%</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= FEATURES ======= -->
+<section class="features">
+  <article class="feat-card">
+    <div class="feat-icon">🤖</div>
+    <h3 class="feat-title">OMEGA <em>IA</em></h3>
+    <p class="feat-desc">Chat com IA especializada em investimentos brasileiros. Análises, dúvidas e insights em tempo real via linguagem natural com contexto do seu portfólio.</p>
+  </article>
+  <article class="feat-card">
+    <div class="feat-icon">📊</div>
+    <h3 class="feat-title">ANÁLISE <em>TÉCNICA</em></h3>
+    <p class="feat-desc">Gráficos avançados com dados reais via API, médias móveis, RSI e score de confiança OMEGA para cada ativo da sua carteira.</p>
+  </article>
+  <article class="feat-card">
+    <div class="feat-icon">🔔</div>
+    <h3 class="feat-title">ALERTAS <em>INTELIGENTES</em></h3>
+    <p class="feat-desc">Configure alertas de preço e receba notificações automáticas quando a OMEGA IA identificar oportunidades ou riscos no mercado.</p>
+  </article>
+  <article class="feat-card">
+    <div class="feat-icon">◈</div>
+    <h3 class="feat-title">GESTÃO DE <em>PORTFÓLIO</em></h3>
+    <p class="feat-desc">Acompanhe todas suas posições em ações, FIIs, criptomoedas e renda fixa em um único painel com dados atualizados em tempo real.</p>
+  </article>
+  <article class="feat-card">
+    <div class="feat-icon">⚡</div>
+    <h3 class="feat-title">PREVISÕES <em>7 DIAS</em></h3>
+    <p class="feat-desc">Motor preditivo com score de confiança para cada ativo, baseado em análise técnica, sentimento de mercado e dados históricos.</p>
+  </article>
+  <article class="feat-card">
+    <div class="feat-icon">🔒</div>
+    <h3 class="feat-title">SEGURANÇA <em>TOTAL</em></h3>
+    <p class="feat-desc">2FA, criptografia end-to-end e log completo de acesso para proteger suas informações financeiras com máxima privacidade.</p>
+  </article>
+</section>
+
+<!-- ======= COMO FUNCIONA ======= -->
+<section class="how-it-works" id="como-funciona">
+  <div class="section-header">
+    <h2>COMO <em>FUNCIONA</em></h2>
+    <p>// comece em menos de 2 minutos · sem cartão de crédito</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-title">CRIE SUA CONTA</div>
+      <p class="step-desc">Cadastro em segundos. Sem burocracia, sem cartão de crédito. Só seu e-mail e senha.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-title">CONFIGURE O PERFIL</div>
+      <p class="step-desc">Defina seu perfil de risco (conservador, moderado ou arrojado) e objetivos financeiros.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-title">ADICIONE ATIVOS</div>
+      <p class="step-desc">Informe suas posições em ações, FIIs, cripto ou renda fixa. A OMEGA IA começa a monitorar.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <div class="step-title">RECEBA INSIGHTS</div>
+      <p class="step-desc">A IA analisa seu portfólio 24/7 e envia alertas e recomendações personalizadas em tempo real.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======= OMEGA IA PROMO ======= -->
+<section class="ai-promo">
+  <div class="ai-promo-text">
+    <h2>CONVERSE COM A <em>OMEGA IA</em></h2>
+    <p>Nossa IA especializada em mercado financeiro brasileiro responde dúvidas, analisa ativos e ajuda você a tomar decisões com base em dados reais e contexto do seu portfólio.</p>
+    <ul class="ai-feature-list">
+      <li>Análise fundamentalista e técnica instantânea</li>
+      <li>Comparação entre ativos da B3 e internacionais</li>
+      <li>Explicação de indicadores e termos financeiros</li>
+      <li>Sugestões de diversificação por perfil de risco</li>
+      <li>Monitoramento de notícias que afetam sua carteira</li>
+    </ul>
+    <a href="register.html" class="btn-cta primary" style="display:inline-block">Ativar OMEGA IA grátis</a>
+  </div>
+  <div class="ai-chat-preview">
+    <div class="ai-chat-header">
+      <span class="status-dot"></span>
+      <span>OMEGA IA · ONLINE</span>
+    </div>
+    <div class="ai-chat-body">
+      <div class="ai-chat-msg user">Qual é sua análise de PETR4 para esta semana?</div>
+      <div class="ai-chat-msg ai">
+        <strong>PETR4</strong> está negociando acima da MM20, com RSI em 58 — zona neutra com viés positivo. O suporte mais próximo fica em <strong>R$35,80</strong>. Dado o cenário atual do petróleo e o câmbio, o score OMEGA é <strong>82/100</strong>.
+      </div>
+      <div class="ai-chat-msg user">E sobre diversificar com FIIs?</div>
+      <div class="ai-chat-msg ai">
+        Para seu perfil moderado, uma alocação de <strong>15-20%</strong> em FIIs de logística (ex: <strong>XPLG11</strong>, <strong>HGLG11</strong>) pode reduzir volatilidade e garantir renda mensal via dividendos.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= DEPOIMENTOS ======= -->
+<section class="testimonials" id="depoimentos">
+  <div class="section-header">
+    <h2>O QUE DIZEM OS <em>INVESTIDORES</em></h2>
+    <p>// mais de 12.000 investidores confiam na OMEGA IA</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"A OMEGA IA me alertou sobre a queda de MGLU3 antes que acontecesse. Economizei mais de R$4.000 em um único dia. Plataforma incrível."</p>
+      <div class="testi-author">
+        <strong>Rafael C.</strong>
+        Investidor há 3 anos · São Paulo, SP
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Finalmente consegui entender análise técnica de verdade. A IA explica tudo de forma simples e ainda monitora meu portfólio automaticamente."</p>
+      <div class="testi-author">
+        <strong>Mariana L.</strong>
+        Investidora iniciante · Belo Horizonte, MG
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Uso o InvestX há 8 meses. Minha rentabilidade passou de 6% para 18% no período. Os alertas de cripto em tempo real são extraordinários."</p>
+      <div class="testi-author">
+        <strong>Lucas M.</strong>
+        Trader ativo · Rio de Janeiro, RJ
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= CTA STRIP ======= -->
+<section class="cta-strip">
+  <h2>COMECE <em>AGORA</em></h2>
+  <p>Crie sua conta gratuitamente e ative a OMEGA IA em segundos.</p>
+  <div class="hero-actions">
+    <a href="register.html" class="btn-cta primary">Criar conta grátis</a>
+    <a href="login.html" class="btn-cta secondary">Fazer login</a>
+  </div>
+</section>
+
+<!-- ======= FOOTER ======= -->
+<footer class="landing-footer" id="sobre">
+  <span class="logo" style="font-size:18px">
+    <span class="logo-icon" style="width:22px;height:22px;font-size:11px">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAD7UlEQVR4AdSWV6gVVxSGJ4UUUiAJCSmQnkAaJHlJh7Q3RR+sWLFg7ygqghUUG/aOCHYsWFDwxYodLNjwwd4VFAUVG+r3zZ193Gc8997jk3j4/7XWXmvPrDl7r12eT57S75lJ7If+xiA1gj0zav+KbQxVHsrt/C2vmwYvwa1wHhyZUXsbtrHJaPuiqkZ1id/n8RXwIGwD34GVwVh7gvZdgn4PVoqqEn/BU/6TWmhxH7ES9oc14QcZtQdgG3uAFnUQ2+FnsCQqS/wJvU36KVocR/wOa8MhcDW8kFF7MLaxP9CnoDCpyT+2kWepxC/TaRV8F4rpiO/hDhjgBw2kIbUxU/ix32HNgMLhXobhO1GPUCrxaMImQiUTEW3hTRjjTxoOr4wT406uI6yHKWjxM2IYLEI+8ZdE20FxFNELxmhK4xicAwPmYvSBz8EYPnsyc3RBfw0LyCd2bb5A1EJqgL4FA2zPpuHcoQr4CMt/NAEd4waNxtCC852dsQuIE/vF9bKIa3VXZgflR2nfQfiP/fctsfdA0RHxFoyxhUaoDSvdHLiSJE78F563obAa1TF/yBrj0c2gQzwLXR8OyvgqOg8LTp/Lzx1Ouyjxj6mnQpRKfL4ilJjUoa1L+2/4BrS65TnsPEJi/T8pZPyPX9eRcWOmY2WF23aJWEyLaayHu6HDbQFhPoY48ZshGid27oL/xWBEegy2CQ+h83C0xuFsAfO4FznuBjtO7CYf/L4o2EFb6cNpuEH8gv4HWowj0Neg6KrIsTC8+N3tUMXFtT/1VIhSifsSch5roHfCDdDDoDd6ORSfK3KMExdyxP/YebqSPVQqcTgMFtLH3c3iaoLt0mqOFocVOYbEV/HvgynixDrWKqAbftFOg687dDu0CHtgW1wmNTnNxLkMa922/ArhB6OSNYrAfOJJWeAV9FL4EgxweF3rVnLwBe3p9T+NTTDAZz0gfJe+sYrAfGKXkQe/cQ8Ki0k7cC/Gv9BhRqVwB3NufTZ1ZMLpsBBtLkKEHQyzuLhSB6IVDGdqN2yPuNfQMdxOw261OQ5gu6HMRHeCwsOmg0bM/D82dhnxH7wIRWuEa9ddCjPFCaQVLrVppnCJHcByD0clvsMp8J22CyyV2OARhOdo2Dq9RTi33qe80DUk/iH0LPaWORXbj1uHti8q8YCwouMP05+yssQG3XctJu9Yt3VAb5Be6BZgn4UWlbdMLwvf0Bb27YfhCIX9nWYxqkpsT5eIdyyXhTeKx4bMThmN2cfLxFB8PosqjeoSh6dOY1ggHhBe6D3gvWFIbX3G7HOGvtWi3MThRe7Xzvt8HKMyauszhqs8PGni8t5aRq+HAAAA//++iSM6AAAABklEQVQDAPdMuT25PGg0AAAAAElFTkSuQmCC" alt="">
+    </span>
+    Invest<em>X</em>
+  </span>
+  <div class="footer-links">
+    <a href="#recursos">Recursos</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Cadastro</a>
+  </div>
+  <span class="footer-copy">InvestX © 2025 · Motor OMEGA v3.2</span>
+</footer>
+
+<script src="../JS/market.js"></script>
+<script src="../JS/auth.js"></script>
+<script src="../JS/ui.js"></script>
+<script src="../JS/home.js"></script>
+</body>
+</html>

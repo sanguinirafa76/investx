@@ -1,8 +1,9 @@
 {
   "rewrites": [
-    { "source": "/",             "destination": "/HTML/Home.html"  },
-    { "source": "/:page.html",   "destination": "/HTML/:page.html" },
-    { "source": "/api/:path*",   "destination": "/api/:path*"      }
+    { "source": "/",                    "destination": "/HTML/Home.html"  },
+    { "source": "/:page.html",          "destination": "/HTML/:page.html" },
+    { "source": "/HTML/:page.html",     "destination": "/HTML/:page.html" },
+    { "source": "/api/:path*",          "destination": "/api/:path*"      }
   ],
   "headers": [
     {

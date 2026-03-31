@@ -16,12 +16,12 @@ function saveUser(u) {
 }
 
 function requireAuth() {
-  if (!getUser()) { window.location.href = 'login.html'; }
+  if (!getUser()) { window.location.href = '/HTML/login.html'; }
 }
 
 function logout() {
   localStorage.removeItem('investx_user');
-  window.location.href = 'login.html';
+  window.location.href = '/HTML/login.html';
 }
 
 // ============================================================
@@ -88,7 +88,7 @@ function handleRegister(e) {
 
   saveAccount(user);
   localStorage.setItem('investx_user', JSON.stringify(user));
-  window.location.href = 'index.html';
+  window.location.href = '/HTML/index.html';
 }
 
 // ============================================================
@@ -112,7 +112,7 @@ function handleLogin(e) {
       initials: 'VF', avatar: null, createdAt: '2023-01-15T00:00:00Z'
     };
     localStorage.setItem('investx_user', JSON.stringify(demoUser));
-    window.location.href = 'index.html';
+    window.location.href = '/HTML/index.html';
     return;
   }
 
@@ -130,7 +130,7 @@ function handleLogin(e) {
   }
 
   localStorage.setItem('investx_user', JSON.stringify(found));
-  window.location.href = 'index.html';
+  window.location.href = '/HTML/index.html';
 }
 
 function showFieldError(errId, inputId, msg) {

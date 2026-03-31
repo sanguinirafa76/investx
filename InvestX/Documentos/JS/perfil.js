@@ -7,7 +7,7 @@ requireAuth();
 
   // Navigation helpers for cross-page linking
   function goTo(section) {
-    window.location.href = 'index.html#' + section;
+    window.location.href = '/HTML/index.html#' + section;
   }
 
   function closeSidebarOverlay() {

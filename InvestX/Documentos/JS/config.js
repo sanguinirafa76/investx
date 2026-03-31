@@ -6,7 +6,7 @@
 requireAuth();
 
   function goTo(section) {
-    window.location.href = 'index.html#' + section;
+    window.location.href = '/HTML/index.html#' + section;
   }
 
   function closeSidebarOverlay() {
@@ -39,7 +39,7 @@ requireAuth();
   function deleteAccount() {
     if (confirm('Tem certeza? Esta ação é irreversível e todos os seus dados serão apagados.')) {
       localStorage.removeItem('investx_user');
-      window.location.href = 'home.html';
+      window.location.href = '/HTML/Home.html';
     }
   }
 
@@ -88,4 +88,3 @@ function cfgSaveApiKey() {
     }
   }
   document.addEventListener('DOMContentLoaded', cfgUpdateStatus);
-

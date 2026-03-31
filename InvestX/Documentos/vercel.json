@@ -1,15 +1,16 @@
 {
   "rewrites": [
-    { "source": "/",            "destination": "/HTML/Home.html"  },
-    { "source": "/api/:path*",  "destination": "/api/:path*"      }
+    { "source": "/",             "destination": "/HTML/Home.html"  },
+    { "source": "/:page.html",   "destination": "/HTML/:page.html" },
+    { "source": "/api/:path*",   "destination": "/api/:path*"      }
   ],
   "headers": [
     {
       "source": "/api/(.*)",
       "headers": [
-        { "key": "Access-Control-Allow-Origin",  "value": "*" },
+        { "key": "Access-Control-Allow-Origin",  "value": "*"             },
         { "key": "Access-Control-Allow-Methods", "value": "POST, OPTIONS" },
-        { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type"  }
       ]
     }
   ]

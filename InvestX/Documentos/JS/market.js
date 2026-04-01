@@ -1,19 +1,18 @@
 /* ============================================================
-   InvestX — market.js
-   Dados de mercado em tempo real via proxy Vercel (/api/market)
-   Atualização a cada 30 segundos
+   InvestX — market.js  (VERSÃO TEMPO REAL COMPLETA)
+   - Atualiza preços, gráfico, ticker, sidebar, tabelas e previsões IA
+   - Polling a cada 15s para preços rápidos, 60s para histórico
+   - Fallback robusto se Yahoo Finance não responder
    ============================================================ */
 
 // ============================================================
-// CONSTANTES GLOBAIS
+// LOGO BASE64
 // ============================================================
-
 const LOGO_B64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAD7UlEQVR4AdSWV6gVVxSGJ4UUUiAJCSmQnkAaJHlJh7Q3RR+sWLFg7ygqghUUG/aOCHYsWFDwxYodLNjwwd4VFAUVG+r3zZ193Gc8997jk3j4/7XWXmvPrDl7r12eT57S75lJ7If+xiA1gj0zav+KbQxVHsrt/C2vmwYvwa1wHhyZUXsbtrHJaPuiqkZ1id/n8RXwIGwD34GVwVh7gvZdgn4PVoqqEn/BU/6TWmhxH7ES9oc14QcZtQdgG3uAFnUQ2+FnsCQqS/wJvU36KVocR/wOa8MhcDW8kFF7MLaxP9CnoDCpyT+2kWepxC/TaRV8F4rpiO/hDhjgBw2kIbUxU/ix32HNgMLhXobhO1GPUCrxaMImQiUTEW3hTRjjTxoOr4wT406uI6yHKWjxM2IYLEI+8ZdE20FxFNELxmhK4xicAwPmYvSBz8EYPnsyc3RBfw0LyCd2bb5A1EJqgL4FA2zPpuHcoQr4CMt/NAEd4waNxtCC852dsQuIE/vF9bKIa3VXZgflR2nfQfiP/fctsfdA0RHxFoyxhUaoDSvdHLiSJE78F563obAa1TF/yBrj0c2gQzwLXR8OyvgqOg8LTp/Lzx1Ouyjxj6mnQpRKfL4ilJjUoa1L+2/4BrS65TnsPEJi/T8pZPyPX9eRcWOmY2WF23aJWEyLaayHu6HDbQFhPoY48ZshGid27oL/xWBEegy2CQ+h83C0xuFsAfO4FznuBjtO7CYf/L4o2EFb6cNpuEH8gv4HWowj0Neg6KrIsTC8+N3tUMXFtT/1VIhSifsSch5roHfCDdDDoDd6ORSfK3KMExdyxP/YebqSPVQqcTgMFtLH3c3iaoLt0mqOFocVOYbEV/HvgynixDrWKqAbftFOg687dDu0CHtgW1wmNTnNxLkMa922/ArhB6OSNYrAfOJJWeAV9FL4EgxweF3rVnLwBe3p9T+NTTDAZz0gfJe+sYrAfGKXkQe/cQ8Ki0k7cC/Gv9BhRqVwB3NufTZ1ZMLpsBBtLkKEHQyzuLhSB6IVDGdqN2yPuNfQMdxOw261OQ5gu6HMRHeCwsOmg0bM/D82dhnxH7wIRWuEa9ddCjPFCaQVLrVppnCJHcByD0clvsMp8J22CyyV2OARhOdo2Dq9RTi33qe80DUk/iH0LPaWORXbj1uHti8q8YCwouMP05+yssQG3XctJu9Yt3VAb5Be6BZgn4UWlbdMLwvf0Bb27YfhCIX9nWYxqkpsT5eIdyyXhTeKx4bMThmN2cfLxFB8PosqjeoSh6dOY1ggHhBe6D3gvWFIbX3G7HOGvtWi3MThRe7Xzvt8HKMyauszhqs8PGni8t5aRq+HAAAA//++iSM6AAAABklEQVQDAPdMuT25PGg0AAAAAElFTkSuQmCC";
 
 // ============================================================
 // MAPEAMENTO DE SÍMBOLOS — Yahoo Finance
 // ============================================================
-
 const YF_MAP = {
   'PETR4':  'PETR4.SA',  'VALE3':  'VALE3.SA',  'ITUB4': 'ITUB4.SA',
   'BBDC4':  'BBDC4.SA',  'MGLU3':  'MGLU3.SA',  'WEGE3': 'WEGE3.SA',
@@ -24,16 +23,14 @@ const YF_MAP = {
   'IBOV':   '^BVSP',     'NASDAQ': '^IXIC',
 };
 
-// Todos os símbolos que buscamos de uma vez
-const ALL_SYMBOLS = Object.values(YF_MAP).join(',');
+const ALL_YF_SYMBOLS = Object.values(YF_MAP).join(',');
 
-// Taxa de câmbio USD→BRL (atualizada via API)
+// Taxa de câmbio USD→BRL
 let usdBrl = 5.87;
 
 // ============================================================
 // DADOS DE FALLBACK
 // ============================================================
-
 const MKT_FALLBACK = {
   acoes: [
     {tick:'PETR4', name:'Petrobras PN',   price:'R$37,48', chg:'+2.30%', vol:'R$1,2bi', score:82, up:true,  color:'linear-gradient(135deg,#8b0000,#dc2626)', lbl:'P4'},
@@ -56,47 +53,44 @@ const MKT_FALLBACK = {
     {tick:'XRP', name:'Ripple',   price:'R$3,12',    chg:'-1.40%', vol:'R$290mi', score:48, up:false, color:'linear-gradient(135deg,#1e293b,#334155)', lbl:'X'},
   ],
   indices: [
-    {tick:'IBOV',   name:'Ibovespa',  price:'128.741', chg:'+0.87%', vol:'R$18,4bi', score:72, up:true, color:'linear-gradient(135deg,#8b0000,#dc2626)', lbl:'IB'},
-    {tick:'S&P500', name:'S&P 500',   price:'5.248',   chg:'+0.32%', vol:'USD 420bi',score:68, up:true, color:'linear-gradient(135deg,#1e3a1e,#166534)', lbl:'SP'},
-    {tick:'NASDAQ', name:'Nasdaq',    price:'18.421',  chg:'+0.55%', vol:'USD 210bi',score:70, up:true, color:'linear-gradient(135deg,#1a1a2e,#2563eb)', lbl:'NQ'},
-    {tick:'SELIC',  name:'Taxa Selic',price:'10,75%',  chg:'0,00%',  vol:'—',        score:50, up:true, color:'linear-gradient(135deg,#374151,#6b7280)', lbl:'SL'},
+    {tick:'IBOV',   name:'Ibovespa',  price:'128.741', chg:'+0.87%', vol:'R$18,4bi', score:72, up:true,  color:'linear-gradient(135deg,#8b0000,#dc2626)', lbl:'IB'},
+    {tick:'S&P500', name:'S&P 500',   price:'5.248',   chg:'+0.32%', vol:'USD 420bi',score:68, up:true,  color:'linear-gradient(135deg,#1e3a1e,#166534)', lbl:'SP'},
+    {tick:'NASDAQ', name:'Nasdaq',    price:'18.421',  chg:'+0.55%', vol:'USD 210bi',score:70, up:true,  color:'linear-gradient(135deg,#1a1a2e,#2563eb)', lbl:'NQ'},
+    {tick:'SELIC',  name:'Taxa Selic',price:'10,75%',  chg:'0,00%',  vol:'—',        score:50, up:true,  color:'linear-gradient(135deg,#374151,#6b7280)', lbl:'SL'},
   ],
 };
 
+// Estado vivo da aplicação
 let currentMarketData = JSON.parse(JSON.stringify(MKT_FALLBACK));
 let currentMarketKey  = 'acoes';
-const marketCache     = {};
+const marketCache     = {};  // { tick: { price, chg, up, prevClose } }
 
 // ============================================================
 // FORMATAÇÃO DE PREÇOS
 // ============================================================
-
 function formatPrice(tick, priceUsd) {
-  if (!priceUsd) return '—';
+  if (priceUsd == null || isNaN(priceUsd)) return '—';
   const isCripto = ['BTC','ETH','SOL','XRP'].includes(tick);
-  const isBRL    = tick.endsWith('.SA') || ['PETR4','VALE3','ITUB4','BBDC4','MGLU3','WEGE3','MXRF11','HGLG11','XPLG11','VISC11'].includes(tick);
-  const isIndex  = ['IBOV','^BVSP'].includes(tick);
-  const isNasdaq = ['NASDAQ','^IXIC'].includes(tick);
+  const isBRL    = ['PETR4','VALE3','ITUB4','BBDC4','MGLU3','WEGE3','MXRF11','HGLG11','XPLG11','VISC11'].includes(tick);
+  const isIBOV   = tick === 'IBOV' || tick === '^BVSP';
+  const isNasdq  = tick === 'NASDAQ' || tick === '^IXIC';
 
-  if (isIndex)  return priceUsd.toLocaleString('pt-BR', { maximumFractionDigits: 0 });
-  if (isNasdaq) return priceUsd.toLocaleString('en-US', { maximumFractionDigits: 0 });
-  if (isBRL)    return 'R$ ' + priceUsd.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  if (isIBOV || isNasdq) return priceUsd.toLocaleString('pt-BR', { maximumFractionDigits: 0 });
+  if (isBRL)              return 'R$ ' + priceUsd.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
   // Cripto — converte USD → BRL
   const brl = priceUsd * usdBrl;
-  if (tick === 'BTC') return 'R$ ' + Math.round(brl).toLocaleString('pt-BR');
-  if (tick === 'ETH') return 'R$ ' + Math.round(brl).toLocaleString('pt-BR');
+  if (tick === 'BTC' || tick === 'ETH') return 'R$ ' + Math.round(brl).toLocaleString('pt-BR');
   return 'R$ ' + brl.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 // ============================================================
-// BUSCA DE DADOS VIA PROXY VERCEL
+// BUSCA DE PREÇOS VIA PROXY (/api/market)
 // ============================================================
-
 async function fetchMarketData(symbols, interval = '5m', range = '1d') {
   try {
     const params = new URLSearchParams({ symbols, interval, range });
-    const res    = await fetch(`/api/market?${params}`);
+    const res    = await fetch(`/api/market?${params}`, { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const json = await res.json();
     return json.data || {};
@@ -106,30 +100,22 @@ async function fetchMarketData(symbols, interval = '5m', range = '1d') {
   }
 }
 
-// Mantém compatibilidade com chart.js
 async function fetchRealPrice(yfSymbol) {
-  try {
-    const data = await fetchMarketData(yfSymbol);
-    const d    = data[yfSymbol];
-    if (!d || d.error) return null;
-    return { price: d.price, chg: d.chg, up: d.up };
-  } catch {
-    return null;
-  }
+  const data = await fetchMarketData(yfSymbol);
+  const d    = data[yfSymbol];
+  if (!d || d.error) return null;
+  return { price: d.price, chg: d.chg, up: d.up };
 }
 
 // ============================================================
-// ATUALIZAÇÃO PRINCIPAL — busca todos os ativos de uma vez
+// ATUALIZAÇÃO PRINCIPAL — todos os preços de uma vez
 // ============================================================
-
 async function refreshRealPrices() {
-  // Busca câmbio USD/BRL junto
-  const allSymbols = ALL_SYMBOLS + ',BRL=X';
+  const allSymbols = ALL_YF_SYMBOLS + ',BRL=X';
   const data = await fetchMarketData(allSymbols);
-
   if (!data || Object.keys(data).length === 0) return;
 
-  // Atualiza câmbio
+  // Câmbio USD→BRL
   if (data['BRL=X']?.price) usdBrl = data['BRL=X'].price;
 
   // Atualiza cada categoria
@@ -143,27 +129,48 @@ async function refreshRealPrices() {
       row.price = formatPrice(row.tick, d.price);
       row.chg   = (d.up ? '+' : '') + d.chg.toFixed(2) + '%';
       row.up    = d.up;
-      marketCache[row.tick] = d;
+      marketCache[row.tick] = { ...d, yfSym };
     }
   }
 
-  // Re-renderiza tabela se visível
-  if (document.getElementById('marketBody')) {
-    renderMarketTable(currentMarketKey);
-  }
+  // Re-renderiza tabela ativa
+  if (document.getElementById('marketBody')) renderMarketTable(currentMarketKey);
 
+  // Atualiza todos os elementos do dashboard
+  updatePortfolioCards();
   updateLandingTicker();
   updateSidebarMini();
-
-  // Atualiza timestamp
-  const lastEl = document.getElementById('lastUpdateTime');
-  if (lastEl) lastEl.textContent = new Date().toLocaleTimeString('pt-BR');
+  updateLandingPrices();
+  updatePredictionsTable();
+  updateMarketStatusBar();
+  updateTimestamp();
 }
 
 // ============================================================
-// TICKER — LANDING PAGE
+// TIMESTAMP — "última atualização"
 // ============================================================
+function updateTimestamp() {
+  const now = new Date().toLocaleTimeString('pt-BR');
+  document.querySelectorAll('#lastUpdateTime, [data-last-update]').forEach(el => {
+    el.textContent = now;
+  });
+}
 
+// ============================================================
+// STATUS BAR — cabeçalho do mercado
+// ============================================================
+function updateMarketStatusBar() {
+  const ibovRow = currentMarketData.indices.find(r => r.tick === 'IBOV');
+  const sub = document.querySelector('#view-mercado .page-sub');
+  if (sub && ibovRow) {
+    const sinal = ibovRow.up ? '+' : '';
+    sub.textContent = `// B3 — Sessão aberta · IBOV ${ibovRow.up ? '▲' : '▼'} ${sinal}${ibovRow.chg} · Atualizado: ${new Date().toLocaleTimeString('pt-BR')}`;
+  }
+}
+
+// ============================================================
+// TICKER — barra scrolling de preços
+// ============================================================
 function buildTickerContent() {
   const tickers = [
     ...currentMarketData.acoes,
@@ -180,58 +187,86 @@ function buildTickerContent() {
 }
 
 function updateLandingTicker() {
+  // Ticker no mercado (view-mercado)
+  const scroll = document.querySelector('#view-mercado .ticker-scroll');
+  if (scroll) {
+    const html = buildTickerContent();
+    scroll.innerHTML = html + html;
+  }
+  // Ticker no dashboard se existir
   const track = document.getElementById('tickerTrack');
-  if (!track) return;
-  const content = buildTickerContent();
-  track.innerHTML = content + content;
+  if (track) {
+    const html = buildTickerContent();
+    track.innerHTML = html + html;
+  }
 }
 
-function initLandingTicker() {
-  updateLandingTicker();
-}
+function initLandingTicker() { updateLandingTicker(); }
 
 // ============================================================
-// SIDEBAR MINI
+// SIDEBAR MINI — índices no menu lateral
 // ============================================================
-
 function updateSidebarMini() {
   const miniItems = document.querySelectorAll('.mini-asset');
   if (!miniItems.length) return;
 
-  const sideFallback = [
-    { tick: 'IBOV',  label: 'IBOV',    val: '128.741', up: true  },
-    { tick: 'NASDAQ',label: 'S&P500',  val: '5.248',   up: true  },
-    { tick: 'BTC',   label: 'BTC/USD', val: '84.210',  up: true  },
-    { tick: null,    label: 'USD/BRL', val: usdBrl.toFixed(2).replace('.', ','), up: false },
+  const sideDef = [
+    { tick: 'IBOV',   label: 'IBOV'    },
+    { tick: 'NASDAQ', label: 'S&P500'  },
+    { tick: 'BTC',    label: 'BTC/USD' },
+    { tick: null,     label: 'USD/BRL' },
   ];
 
   miniItems.forEach((el, i) => {
-    const fb     = sideFallback[i];
+    const def    = sideDef[i];
     const valEl  = el.querySelector('.mini-val');
     if (!valEl) return;
 
-    const cached = fb.tick ? marketCache[fb.tick] : null;
-    if (cached) {
-      const arr = cached.up ? '▲' : '▼';
-      valEl.textContent = `${arr} ${formatPrice(fb.tick, cached.price)}`;
-      valEl.className   = 'mini-val ' + (cached.up ? 'up' : 'dn');
-    } else {
-      // USD/BRL atualizado
-      if (!fb.tick) {
-        valEl.textContent = `▼ ${usdBrl.toFixed(2).replace('.', ',')}`;
-        valEl.className   = 'mini-val dn';
-      } else {
-        valEl.textContent = `${fb.up ? '▲' : '▼'} ${fb.val}`;
-        valEl.className   = 'mini-val ' + (fb.up ? 'up' : 'dn');
-      }
+    if (!def.tick) {
+      // USD/BRL
+      valEl.textContent = `▼ ${usdBrl.toFixed(2).replace('.', ',')}`;
+      valEl.className   = 'mini-val dn';
+      return;
     }
+
+    const cached = marketCache[def.tick];
+    if (cached) {
+      valEl.textContent = `${cached.up ? '▲' : '▼'} ${formatPrice(def.tick, cached.price)}`;
+      valEl.className   = 'mini-val ' + (cached.up ? 'up' : 'dn');
+    }
+  });
+}
+
+// ============================================================
+// CARDS DO PORTFÓLIO (port-card) — preços e variações
+// ============================================================
+function updatePortfolioCards() {
+  // port-card: preço (.port-price) e variação (.port-pct)
+  document.querySelectorAll('.port-card').forEach(card => {
+    const nameEl  = card.querySelector('.port-name');
+    if (!nameEl) return;
+    const tick    = nameEl.textContent.trim();
+    const cached  = marketCache[tick];
+    if (!cached) return;
+
+    const priceEl = card.querySelector('.port-price');
+    const pctEl   = card.querySelector('.port-pct');
+
+    if (priceEl) priceEl.textContent = formatPrice(tick, cached.price);
+    if (pctEl) {
+      const sign = cached.up ? '+' : '';
+      pctEl.textContent = `${cached.up ? '▲' : '▼'} ${sign}${cached.chg.toFixed(2)}%`;
+      pctEl.className   = 'port-pct ' + (cached.up ? 'up' : 'dn');
+    }
+
+    // Atualiza o onclick para usar o ativo correto
+    card.onclick = () => selectAsset(tick);
   });
 }
 
 // ============================================================
 // TABELA DE MERCADO
 // ============================================================
-
 function switchMarketTab(btn, key) {
   currentMarketKey = key;
   document.querySelectorAll('.mtab').forEach(b => b.classList.remove('active'));
@@ -245,8 +280,9 @@ function renderMarketTable(key) {
   if (!tbody) return;
   tbody.innerHTML = '';
   (currentMarketData[key] || []).forEach((row, i) => {
-    const sc = row.score >= 70 ? 'var(--red-bright)' : row.score >= 50 ? '#f59e0b' : '#6b7280';
-    const tr = document.createElement('tr');
+    const sc   = row.score >= 70 ? 'var(--red-bright)' : row.score >= 50 ? '#f59e0b' : '#6b7280';
+    const sign = row.up ? '+' : '';
+    const tr   = document.createElement('tr');
     tr.innerHTML = `
       <td style="color:var(--gray);font-size:12px">${i + 1}</td>
       <td><span class="asset-cell">
@@ -257,7 +293,7 @@ function renderMarketTable(key) {
         </span>
       </span></td>
       <td class="td-r">${row.price}</td>
-      <td class="td-r ${row.up ? 'up' : 'dn'}">${row.up ? '▲' : '▼'} ${row.chg}</td>
+      <td class="td-r ${row.up ? 'up' : 'dn'}">${row.up ? '▲' : '▼'} ${sign}${row.chg}</td>
       <td class="td-r" style="color:var(--gray)">${row.vol}</td>
       <td class="td-r">
         <span style="color:${sc}">${row.score}</span>
@@ -268,9 +304,8 @@ function renderMarketTable(key) {
 }
 
 // ============================================================
-// LANDING PAGE — cards de preço
+// CARDS DE PREÇO — LANDING / DASHBOARD
 // ============================================================
-
 async function updateLandingPrices() {
   const map = {
     'PETR4': { elPrice: 'lpc-petr4',  elChg: 'lpc-petr4-chg'  },
@@ -291,27 +326,65 @@ async function updateLandingPrices() {
     if (priceEl) priceEl.textContent = formatPrice(tick, cached.price);
     if (chgEl) {
       const sign = cached.up ? '+' : '';
-      chgEl.textContent = (cached.up ? '▲ ' : '▼ ') + sign + cached.chg.toFixed(2) + '%';
+      chgEl.textContent = `${cached.up ? '▲ ' : '▼ '}${sign}${cached.chg.toFixed(2)}%`;
       chgEl.className   = 'lpc-chg ' + (cached.up ? 'up' : 'dn');
     }
   }
-
-  const lastEl = document.getElementById('lastUpdateTime');
-  if (lastEl) lastEl.textContent = new Date().toLocaleTimeString('pt-BR');
 }
 
 // ============================================================
-// INICIALIZAÇÃO + LOOP DE 30 SEGUNDOS
+// TABELA DE PREVISÕES IA — atualiza preços base em tempo real
+// ============================================================
+function updatePredictionsTable() {
+  const rows = document.querySelectorAll('.pred-table tbody tr');
+  rows.forEach(row => {
+    const tickEl = row.querySelector('td:first-child strong');
+    if (!tickEl) return;
+    const tick   = tickEl.textContent.trim().replace('k','');
+    const cached = marketCache[tick] || marketCache[tick.replace('.SA','')];
+    if (!cached) return;
+
+    const priceCell = row.querySelector('td:nth-child(2)');
+    if (priceCell) priceCell.textContent = formatPrice(tick, cached.price);
+  });
+}
+
+// ============================================================
+// GRÁFICO — integração com chart.js via variáveis globais
+// ============================================================
+
+// Expõe marketCache e formatPrice para chart.js
+window.marketCache = marketCache;
+window.formatPrice = formatPrice;
+window.usdBrl      = usdBrl;
+
+// ============================================================
+// INICIALIZAÇÃO + LOOPS DE ATUALIZAÇÃO
 // ============================================================
 
 (async function initMarket() {
+  console.log('[InvestX] Iniciando dados de mercado em tempo real...');
+
   // Primeira carga imediata
   await refreshRealPrices();
-  updateLandingPrices();
 
-  // Atualiza a cada 30 segundos
+  // Renderiza tabela inicial
+  renderMarketTable(currentMarketKey);
+
+  // Atualização de preços a cada 15 segundos
   setInterval(async () => {
     await refreshRealPrices();
-    updateLandingPrices();
-  }, 30_000);
+  }, 15_000);
+
+  // Reinicia gráfico do ativo atual a cada 60 segundos
+  setInterval(async () => {
+    if (typeof fetchChartData === 'function' && typeof drawChart === 'function') {
+      const asset = window.currentChartAsset || 'PETR4';
+      const key   = window.currentChartKey   || '1D';
+      const data  = await fetchChartData(asset, key);
+      if (data) drawChart(data);
+    }
+  }, 60_000);
+
+  console.log('[InvestX] Loops ativos: preços 15s · gráfico 60s');
 })();

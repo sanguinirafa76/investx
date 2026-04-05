@@ -1,13 +1,11 @@
-/* ============================================================
-   InvestX — login.css
-   Estilos exclusivos da página de Login
-   ============================================================ */
-
 *, *::before, *::after { box-sizing: border-box; }
 html, body {
-  height: 100%; margin: 0; padding: 0;
+  height: 100%; 
+  margin: 0; 
+  padding: 0;
   overflow: hidden;
 }
+
 
 /* ---- LAYOUT HORIZONTAL ---- */
 .login-layout {
@@ -15,6 +13,7 @@ html, body {
   height: 100vh;
   width: 100vw;
 }
+
 
 /* ---- LADO ESQUERDO — Branding ---- */
 .login-left {
@@ -27,6 +26,7 @@ html, body {
   position: relative;
   overflow: hidden;
 }
+
 .login-left::before {
   content: '';
   position: absolute; inset: 0;
@@ -36,23 +36,40 @@ html, body {
   background-size: 40px 40px;
   pointer-events: none;
 }
+
 .login-left::after {
   content: '';
   position: absolute;
-  top: 50%; left: 50%;
+  top: 50%; 
+  left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px; height: 400px;
+  width: 400px; 
+  height: 400px;
   background: radial-gradient(circle, rgba(139,0,0,.2) 0%, transparent 65%);
   pointer-events: none;
 }
 
 .login-left-logo {
-  position: relative; z-index: 2;
-  padding: 28px 36px;
+  position: relative; 
+  z-index: 2;
+  padding: 30px 30px;
+  margin-left: -30px;
+  margin-bottom: 30px;
+}
+
+.nomelogo{
+  font-size: 28px;
+  margin-top: 7spx;
+}
+
+.nomelogo em{
+  font-size: 28px;
+  margin-left: 0px;
 }
 
 .login-left-content {
-  position: relative; z-index: 2;
+  position: relative; 
+  z-index: 2;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -62,47 +79,76 @@ html, body {
   text-align: center;
 }
 
+.login-omega-icon img{
+  width:80px;
+}
+
 .login-omega-icon {
-  width: 90px; height: 90px; border-radius: 50%;
-  background: linear-gradient(135deg, #8b0000, #dc2626);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 36px; margin-bottom: 28px;
+  width: 120px;  
+  height: 120px; 
+  border-radius: 50%;
+  background: linear-gradient(135deg, #433939, #262323);
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  font-size: 36px; 
+  margin-bottom: 28px;
   box-shadow: 0 0 40px rgba(139,0,0,.4);
   animation: pulse 3s ease-in-out infinite;
 }
 
 .login-left-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 42px; letter-spacing: 5px; line-height: 1;
-  color: var(--white); margin-bottom: 10px;
+  font-size: 42px; 
+  letter-spacing: 5px; 
+  line-height: 1;
+  color: var(--white); 
+  margin-bottom: 10px;
 }
-.login-left-title em { color: var(--red-bright); font-style: normal; }
+
+.login-left-title em { 
+  color: var(--red-bright); 
+  font-style: normal; 
+}
+
 .login-left-sub {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 11px; letter-spacing: 2px;
-  color: var(--gray); margin-bottom: 36px;
+  font-size: 11px; 
+  letter-spacing: 2px;
+  color: var(--gray); 
+  margin-bottom: 36px;
   line-height: 1.8;
 }
 
 .login-stats {
-  display: flex; gap: 32px; margin-top: 8px;
+  display: flex; 
+  gap: 32px; 
+  margin-top: 10px;
 }
+
 .login-stat {
   text-align: center;
 }
+
 .login-stat-num {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 28px; letter-spacing: 2px;
-  color: var(--red-glow); line-height: 1;
+  font-size: 28px; 
+  letter-spacing: 2px;
+  color: var(--red-glow); 
+  line-height: 1;
 }
+
 .login-stat-lbl {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 9px; letter-spacing: 1px;
-  color: var(--gray); margin-top: 2px;
+  font-size: 9px; 
+  letter-spacing: 1px;
+  color: var(--gray); 
+  margin-top: 2px;
 }
 
 .login-divider {
-  width: 60px; height: 1px;
+  width: 60px; 
+  height: 1px;
   background: linear-gradient(90deg, transparent, var(--red-bright), transparent);
   margin: 28px auto;
 }
@@ -110,17 +156,23 @@ html, body {
 .login-quote {
   max-width: 300px;
   font-family: 'Rajdhani', sans-serif;
-  font-size: 13px; color: var(--gray);
-  line-height: 1.7; font-style: italic;
+  font-size: 13px; 
+  color: var(--gray);
+  line-height: 1.7; 
+  font-style: italic;
   text-align: center;
 }
+
 .login-quote cite {
-  display: block; margin-top: 10px;
+  display: block; 
+  margin-top: 10px;
   font-style: normal;
   font-family: 'Share Tech Mono', monospace;
-  font-size: 10px; letter-spacing: 1px;
+  font-size: 10px; 
+  letter-spacing: 1px;
   color: var(--red-glow);
 }
+
 
 /* ---- LADO DIREITO — Formulário ---- */
 .login-right {
@@ -133,60 +185,121 @@ html, body {
   padding: 48px;
   overflow-y: auto;
 }
+
 .login-form-inner {
   width: 100%;
   max-width: 380px;
 }
+
 .login-form-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 40px; letter-spacing: 4px;
-  color: var(--white); margin-bottom: 4px;
+  font-size: 40px; 
+  letter-spacing: 4px;
+  color: var(--white); 
+  margin-bottom: 6px;
+  margin-top: -20px;
+  text-align: center;
 }
-.login-form-title em { color: var(--red-bright); font-style: normal; }
+
+.login-form-title em { 
+  color: var(--red-bright); 
+  font-style: normal; 
+}
+
 .login-form-sub {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 10px; letter-spacing: 2px;
-  color: var(--gray); margin-bottom: 36px;
+  font-size: 10px; 
+  letter-spacing: 2px;
+  color: var(--gray); 
+  margin-bottom: 50px;
+  text-align: center;
 }
 
-.pass-wrap { position: relative; }
-.pass-wrap input { padding-right: 42px; }
-.pass-toggle {
-  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
-  background: none; border: none; cursor: pointer; font-size: 16px;
-  color: var(--gray); padding: 0; line-height: 1; transition: color .2s;
+.pass-wrap { 
+  position: relative; 
 }
-.pass-toggle:hover { color: var(--white); }
+
+.pass-wrap input { 
+  padding-right: 42px; 
+}
+
+.pass-toggle {
+  position: absolute; 
+  right: 12px; 
+  top: 50%; 
+  transform: translateY(-50%);
+  background: none; 
+  border: none; 
+  cursor: pointer; 
+  font-size: 16px;
+  color: var(--gray); 
+  padding: 0; 
+  line-height: 1; 
+  transition: color .2s;
+  margin-top: -4px;
+}
+
+.pass-toggle:hover { 
+  color: var(--white); 
+}
 
 .demo-hint {
-  font-family: 'Share Tech Mono', monospace; font-size: 10px;
-  color: var(--gray); text-align: center; margin-top: 14px;
-  padding: 9px 12px; background: rgba(107,114,128,.08);
-  border-radius: 4px; border: 1px solid var(--border);
+  font-family: 'Share Tech Mono', monospace; 
+  font-size: 10px;
+  color: var(--gray); 
+  text-align: center; 
+  margin-top: 14px;
+  padding: 9px 12px; 
+  background: rgba(107,114,128,.08);
+  border-radius: 4px; 
+  border: 1px solid var(--border);
 }
-.demo-hint span { color: var(--red-glow); }
+
+.demo-hint span { 
+  color: var(--red-glow); 
+}
 
 .no-account-hint {
   display: none;
   background: rgba(220,38,38,.08);
   border: 1px solid rgba(220,38,38,.3);
-  border-radius: 6px; padding: 12px 16px;
+  border-radius: 6px; 
+  padding: 12px 16px;
   margin-bottom: 20px;
+  margin-top: -20px;
   font-family: 'Share Tech Mono', monospace;
-  font-size: 11px; color: var(--light);
-  letter-spacing: .5px; line-height: 1.6;
+  font-size: 11px; 
+  color: var(--light);
+  letter-spacing: .5px; 
+  line-height: 1.6;
   text-align: center;
 }
-.no-account-hint a { color: var(--red-glow); text-decoration: none; }
-.no-account-hint.show { display: block; }
+
+.no-account-hint a { 
+  color: var(--red-glow); 
+  text-decoration: none; 
+}
+
+.no-account-hint.show { 
+  display: block; 
+}
 
 .auth-switch {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 11px; color: var(--gray);
-  margin-top: 18px; text-align: center;
+  font-size: 11px; 
+  color: var(--gray);
+  margin-top: 18px; 
+  text-align: center;
 }
-.auth-switch a { color: var(--red-glow); text-decoration: none; }
-.auth-switch a:hover { color: var(--white); }
+
+.auth-switch a { 
+  color: var(--red-glow); 
+  text-decoration: none; 
+}
+
+.auth-switch a:hover { 
+  color: var(--white); 
+}
 
 @media (max-width: 768px) {
   html, body { overflow: auto; }

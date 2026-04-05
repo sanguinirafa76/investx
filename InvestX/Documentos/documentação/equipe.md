@@ -7,23 +7,31 @@ Arquivo criado para gerenciamento das atividades da equipe, como:
 
 
 ->Erros para corrigir:
-    -Página de configurações e perfil serem linkáveis com as demais abas do dashboard
-    -valor de cada objetivos sem que sejam trocados ao alterar os gráficos
-    -arrumar nome e logo para o usado no início 
+    -quando savar imagem em "perfil" alterar na part de nav também
+    -alterar parte de perfil de risco em "perfil"
+    -função dos botões em configuração
+    -valores ao passar a imagem no gráfico serem correspondentes ao valor atual no mercado(alteração das linhas do gráfico)
+
 
 
 ->Adicionar itens:
-    -página inicial(antes do login)
-    -página de login 
-    -não usar o chat sem login 
-    -fazer funcionar em tempo real as informações
-    -fazer o chat IA responder qualquer mensagem(com foco em investimento)
-    -adicionar mais informações de investimento
-    -poder adicionar foto no login 
-    -fazer ligação com a página home após o cadastro
-    -ponto no gráfico ao passar o mouse, indicando o valor do item no devido tempo do gráfico
+    -colocar para adicionar valores na parte de perfil, sem que seja por comando, assim o usuário administra seu investimento de verdade
+    -opção futura de chat/ligação com outros investidores, para comunicação e até para quem coach 
+    -aumento de informações e gráficos para análise do usuário e da IA. 
 
 
 
 
 ->Corrijidos:
+    -página de login
+    -págna inicial
+    -fazer chat IA responder qualquer mensagem com foco em investimento
+    -não usar o chat sem login(ideia retirada, por conta da página inicial) 
+    -adicionar mais informações de investimento
+    -adicionar foto no login 
+    -fazer página de perfil e configuração serem do mesmo arquivo do index
+    -valor de cada objetivos sem que sejam trocados ao alterar os gráficos
+    -arrumar nome e logo 
+    -arrumar gráficos com ponto ao passar  mouse por cima 
+    -arrumar seleção de foto na parte de perfil 
+    -fazer funcionar em tempo real as informações

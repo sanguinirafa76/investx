@@ -1,18 +1,10 @@
-/* ============================================================
-   InvestX — app.js
-   ÚNICO arquivo JS para toda a aplicação
-   ============================================================ */
-
-// ============================================================
 // CONSTANTES GLOBAIS
 // ============================================================
-
 const LOGO_B64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAD7UlEQVR4AdSWV6gVVxSGJ4UUUiAJCSmQnkAaJHlJh7Q3RR+sWLFg7ygqghUUG/aOCHYsWFDwxYodLNjwwd4VFAUVG+r3zZ193Gc8997jk3j4/7XWXmvPrDl7r12eT57S75lJ7If+xiA1gj0zav+KbQxVHsrt/C2vmwYvwa1wHhyZUXsbtrHJaPuiqkZ1id/n8RXwIGwD34GVwVh7gvZdgn4PVoqqEn/BU/6TWmhxH7ES9oc14QcZtQdgG3uAFnUQ2+FnsCQqS/wJvU36KVocR/wOa8MhcDW8kFF7MLaxP9CnoDCpyT+2kWepxC/TaRV8F4rpiO/hDhjgBw2kIbUxU/ix32HNgMLhXobhO1GPUCrxaMImQiUTEW3hTRjjTxoOr4wT406uI6yHKWjxM2IYLEI+8ZdE20FxFNELxmhK4xicAwPmYvSBz8EYPnsyc3RBfw0LyCd2bb5A1EJqgL4FA2zPpuHcoQr4CMt/NAEd4waNxtCC852dsQuIE/vF9bKIa3VXZgflR2nfQfiP/fctsfdA0RHxFoyxhUaoDSvdHLiSJE78F563obAa1TF/yBrj0c2gQzwLXR8OyvgqOg8LTp/Lzx1Ouyjxj6mnQpRKfL4ilJjUoa1L+2/4BrS65TnsPEJi/T8pZPyPX9eRcWOmY2WF23aJWEyLaayHu6HDbQFhPoY48ZshGid27oL/xWBEegy2CQ+h83C0xuFsAfO4FznuBjtO7CYf/L4o2EFb6cNpuEH8gv4HWowj0Neg6KrIsTC8+N3tUMXFtT/1VIhSifsSch5roHfCDdDDoDd6ORSfK3KMExdyxP/YebqSPVQqcTgMFtLH3c3iaoLt0mqOFocVOYbEV/HvgynixDrWKqAbftFOg687dDu0CHtgW1wmNTnNxLkMa922/ArhB6OSNYrAfOJJWeAV9FL4EgxweF3rVnLwBe3p9T+NTTDAZz0gfJe+sYrAfGKXkQe/cQ8Ki0k7cC/Gv9BhRqVwB3NufTZ1ZMLpsBBtLkKEHQyzuLhSB6IVDGdqN2yPuNfQMdxOw261OQ5gu6HMRHeCwsOmg0bM/D82dhnxH7wIRWuEa9ddCjPFCaQVLrVppnCJHcByD0clvsMp8J22CyyV2OARhOdo2Dq9RTi33qe80DUk/iH0LPaWORXbj1uHti8q8YCwouMP05+yssQG3XctJu9Yt3VAb5Be6BZgn4UWlbdMLwvf0Bb27YfhCIX9nWYxqkpsT5eIdyyXhTeKx4bMThmN2cfLxFB8PosqjeoSh6dOY1ggHhBe6D3gvWFIbX3G7HOGvtWi3MThRe7Xzvt8HKMyauszhqs8PGni8t5aRq+HAAAA//++iSM6AAAABklEQVQDAPdMuT25PGg0AAAAAElFTkSuQmCC";
 
-// ============================================================
+
 // SESSION / AUTH
 // ============================================================
-
 function getUser() {
   try { return JSON.parse(localStorage.getItem('investx_user')); } catch { return null; }
 }
@@ -30,10 +22,8 @@ function logout() {
   window.location.href = 'login.html';
 }
 
-// ============================================================
-// DADOS DE MERCADO EM TEMPO REAL (via APIs públicas gratuitas)
-// ============================================================
 
+// DADOS DE MERCADO EM TEMPO REAL (via APIs públicas gratuitas)
 // Cache dos preços
 const marketCache = {};
 
@@ -156,10 +146,9 @@ async function refreshRealPrices() {
   }
 }
 
-// ============================================================
+
 // TICKER — LANDING PAGE (contínuo, sem corte)
 // ============================================================
-
 function buildTickerContent() {
   const tickers = [
     ...currentMarketData.acoes,
@@ -187,10 +176,9 @@ function initLandingTicker() {
   updateLandingTicker();
 }
 
-// ============================================================
+
 // SIDEBAR MINI — preços em tempo real
 // ============================================================
-
 function updateSidebarMini() {
   const miniItems = document.querySelectorAll('.mini-asset');
   if (!miniItems.length) return;
@@ -228,10 +216,9 @@ function updateSidebarMini() {
   });
 }
 
-// ============================================================
+
 // TOPBAR
 // ============================================================
-
 function populateTopbar() {
   const user = getUser();
   if (!user) return;
@@ -246,10 +233,9 @@ function populateTopbar() {
   av.title = user.name || 'Perfil';
 }
 
-// ============================================================
+
 // SIDEBAR / OVERLAY
 // ============================================================
-
 function toggleSidebar() {
   const s = document.getElementById('sidebar');
   const o = document.getElementById('overlay');
@@ -277,10 +263,9 @@ function closeAll() {
   if (o) o.classList.remove('show');
 }
 
-// ============================================================
+
 // NAVEGAÇÃO
 // ============================================================
-
 const navLabels = {
   dashboard:'dashboard', portfolio:'portfólio',
   mercado:'mercado', analise:'análise', alertas:'alertas', negociar:'negociar'
@@ -300,10 +285,9 @@ function navigate(page) {
   if (page === 'negociar') { runSimulation(); updateTradePrice('buy'); }
 }
 
-// ============================================================
+
 // TABELA DE MERCADO
 // ============================================================
-
 function switchMarketTab(btn, key) {
   currentMarketKey = key;
   document.querySelectorAll('.mtab').forEach(b => b.classList.remove('active'));
@@ -339,10 +323,9 @@ function renderMarketTable(key) {
   });
 }
 
-// ============================================================
+
 // ALERTAS
 // ============================================================
-
 function dismissAlert(btn) {
   const art = btn.closest('article');
   art.style.opacity = '0.35';
@@ -377,10 +360,9 @@ function createAlert() {
   c.prepend(el);
 }
 
-// ============================================================
+
 // GRÁFICO — DADOS REAIS via Yahoo Finance
 // ============================================================
-
 let currentChartKey = '1D';
 let currentChartAsset = 'PETR4';
 let currentChartPoints = null;
@@ -553,10 +535,9 @@ function startLivePriceTicker() {
   }, 15000); // atualiza a cada 15 segundos
 }
 
-// ============================================================
+
 // CHAT — OMEGA IA (Anthropic API)
 // ============================================================
-
 let chatHistory = [];
 
 function getTime() {
@@ -634,15 +615,12 @@ REGRAS DE COMPORTAMENTO:
 • Ao mencionar indicadores, explique brevemente seu significado quando necessário`;
 
 
-// Chave de API (Google AI Studio)
-// ============================================================
-// CHAT — OMEGA IA via Groq API (llama-3.3-70b)
-// ============================================================
+
+// CHAT — OMEGA IA via Groq API 
 // CHAMADA AO PROXY VERCEL — chave de API nunca exposta ao cliente
 // A função serverless em /api/chat injeta a ANTHROPIC_API_KEY
 // a partir das variáveis de ambiente configuradas na Vercel.
 // ============================================================
-
 async function callOmegaIA(userMessage) {
   const marketCtx = buildMarketContext();
 
@@ -715,10 +693,9 @@ function autoResize(el) {
   el.style.height = Math.min(el.scrollHeight, 80) + 'px';
 }
 
-// ============================================================
+
 // AUTH — REGISTER
 // ============================================================
-
 function initAvatarPicker(previewId, inputId) {
   const preview = document.getElementById(previewId);
   const input   = document.getElementById(inputId);
@@ -768,10 +745,9 @@ function handleRegister(e) {
   window.location.href = 'index.html';
 }
 
-// ============================================================
+
 // AUTH — MULTIPLE ACCOUNTS STORAGE
 // ============================================================
-
 function getAllAccounts() {
   try { return JSON.parse(localStorage.getItem('investx_accounts')) || []; } catch { return []; }
 }
@@ -784,10 +760,9 @@ function saveAccount(user) {
   localStorage.setItem('investx_accounts', JSON.stringify(accounts));
 }
 
-// ============================================================
+
 // AUTH — LOGIN (só permite se tiver conta cadastrada)
 // ============================================================
-
 function handleLogin(e) {
   e.preventDefault();
   let ok = true;
@@ -842,10 +817,9 @@ function togglePassVis(inputId, btn) {
   else { inp.type = 'password'; btn.textContent = '👁'; }
 }
 
-// ============================================================
+
 // PROFILE
 // ============================================================
-
 function formatDate(iso) {
   if (!iso) return 'Jan 2023';
   const d = new Date(iso);
@@ -911,10 +885,9 @@ function initAvatarUpload() {
   });
 }
 
-// ============================================================
+
 // API KEY MANAGEMENT
 // ============================================================
-
 function saveApiKey() {
   const input = document.getElementById('apiKeyInput');
   if (!input || !input.value.trim()) return;
@@ -942,10 +915,9 @@ function checkApiKeyStatus() {
   }
 }
 
-// ============================================================
+
 // NEGOCIAR — TRADING / SIMULAÇÃO
 // ============================================================
-
 const TRADE_ASSETS = {
   'PETR4': { price: 37.48, chg: '+2,30%', score: 82, signal: 'COMPRAR', analysis: 'PETR4 em momento técnico positivo. Operando acima da MM20 com RSI neutro em 58. Suporte forte em R$35,80. Volume acima da média indica interesse comprador.', previsao: 'R$ 39,20 (+4,59%)', ret: 0.12 },
   'VALE3': { price: 62.14, chg: '▼ -0,80%', score: 55, signal: 'ATENÇÃO', analysis: 'VALE3 em tendência de baixa de curto prazo. Correlação com minério negativa. Risco do suporte em R$60 não ser mantido.', previsao: 'R$ 60,50 (-2,64%)', ret: 0.08 },

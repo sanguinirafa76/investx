@@ -1,12 +1,3 @@
-/* ============================================================
-   InvestX — auth.js
-   Sessão, autenticação, registro, API key
-   ============================================================ */
-
-// ============================================================
-// SESSION / AUTH
-// ============================================================
-
 function getUser() {
   try { return JSON.parse(localStorage.getItem('investx_user')); } catch { return null; }
 }
@@ -16,18 +7,17 @@ function saveUser(u) {
 }
 
 function requireAuth() {
-  if (!getUser()) { window.location.href = '/HTML/login.html'; }
+  if (!getUser()) { window.location.href = 'login.html'; }
 }
 
 function logout() {
   localStorage.removeItem('investx_user');
-  window.location.href = '/HTML/login.html';
+  window.location.href = 'login.html';
 }
 
-// ============================================================
+
 // MULTIPLE ACCOUNTS STORAGE
 // ============================================================
-
 function getAllAccounts() {
   try { return JSON.parse(localStorage.getItem('investx_accounts')) || []; } catch { return []; }
 }
@@ -40,10 +30,10 @@ function saveAccount(user) {
   localStorage.setItem('investx_accounts', JSON.stringify(accounts));
 }
 
-// ============================================================
+
+
 // AUTH — REGISTER
 // ============================================================
-
 function initAvatarPicker(previewId, inputId) {
   const preview = document.getElementById(previewId);
   const input   = document.getElementById(inputId);
@@ -54,7 +44,7 @@ function initAvatarPicker(previewId, inputId) {
     if (!file) return;
     const reader = new FileReader();
     reader.onload = ev => {
-      preview.innerHTML = `<img src="${ev.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"><span class="avatar-overlay">📷</span>`;
+      preview.innerHTML = `<img src="${ev.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"><span class="avatar-overlay"><img src="../../Imagens/câmera.png" style="width: 40px; height:40px;"></span>`;
       preview.dataset.avatarData = ev.target.result;
     };
     reader.readAsDataURL(file);
@@ -88,13 +78,12 @@ function handleRegister(e) {
 
   saveAccount(user);
   localStorage.setItem('investx_user', JSON.stringify(user));
-  window.location.href = '/HTML/index.html';
+  window.location.href = 'index.html';
 }
 
-// ============================================================
+
 // AUTH — LOGIN
 // ============================================================
-
 function handleLogin(e) {
   e.preventDefault();
   let ok = true;
@@ -112,7 +101,7 @@ function handleLogin(e) {
       initials: 'VF', avatar: null, createdAt: '2023-01-15T00:00:00Z'
     };
     localStorage.setItem('investx_user', JSON.stringify(demoUser));
-    window.location.href = '/HTML/index.html';
+    window.location.href = 'index.html';
     return;
   }
 
@@ -130,7 +119,7 @@ function handleLogin(e) {
   }
 
   localStorage.setItem('investx_user', JSON.stringify(found));
-  window.location.href = '/HTML/index.html';
+  window.location.href = 'index.html';
 }
 
 function showFieldError(errId, inputId, msg) {
@@ -143,81 +132,14 @@ function showFieldError(errId, inputId, msg) {
 function togglePassVis(inputId, btn) {
   const inp = document.getElementById(inputId);
   if (!inp) return;
-  if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '🙈'; }
+  if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '👁'; }
   else { inp.type = 'password'; btn.textContent = '👁'; }
 }
 
-// ============================================================
-// API KEY MANAGEMENT
-// ============================================================
 
-function saveApiKey() {
-  const input = document.getElementById('apiKeyInput');
-  if (!input || !input.value.trim()) return;
-  const key = input.value.trim();
-  localStorage.setItem('investx_api_key', key);
-  input.value = '';
-  document.getElementById('apiKeyBanner').style.display = 'none';
-  const statusEl = document.querySelector('.chat-ai-status');
-  if (statusEl) statusEl.textContent = 'online · pronta para responder';
-  appendMessage('✅ Chave de API salva! Agora posso responder **qualquer pergunta** — finanças, tecnologia, ciência, curiosidades e muito mais. Como posso ajudar?', false);
-}
 
-function checkApiKeyStatus() {
-  const key = localStorage.getItem('investx_api_key');
-  const banner = document.getElementById('apiKeyBanner');
-  const statusEl = document.querySelector('.chat-ai-status');
-  if (!key) {
-    if (banner) banner.style.display = 'block';
-    if (statusEl) statusEl.textContent = '⚠ chave de API necessária';
-  } else {
-    if (banner) banner.style.display = 'none';
-    if (statusEl) statusEl.textContent = 'online · IA ativa';
-  }
-}
-
-// ============================================================
-// CONFIG PAGE — API KEY
-// ============================================================
-
-function cfgSaveApiKey() {
-  const key = document.getElementById('cfg-api-key')?.value.trim();
-  if (!key || !key.startsWith('sk-')) {
-    alert('Chave inválida. Deve começar com sk-ant-...');
-    return;
-  }
-  localStorage.setItem('investx_api_key', key);
-  document.getElementById('cfg-api-key').value = '';
-  cfgUpdateStatus();
-  alert('✅ Chave salva com sucesso! O chat da OMEGA IA está ativo.');
-}
-
-function cfgClearApiKey() {
-  if (confirm('Remover a chave de API? O chat da OMEGA IA deixará de funcionar.')) {
-    localStorage.removeItem('investx_api_key');
-    cfgUpdateStatus();
-  }
-}
-
-function cfgUpdateStatus() {
-  const key = localStorage.getItem('investx_api_key');
-  const el = document.getElementById('cfg-key-status');
-  if (!el) return;
-  if (key) {
-    el.style.background = 'rgba(34,197,94,.1)';
-    el.style.color = '#4ade80';
-    el.textContent = '✅ Chave configurada — OMEGA IA ativa (sk-ant-...***' + key.slice(-4) + ')';
-  } else {
-    el.style.background = 'rgba(220,38,38,.1)';
-    el.style.color = 'var(--red-glow)';
-    el.textContent = '⚠ Nenhuma chave configurada — chat inativo';
-  }
-}
-
-// ============================================================
 // PROFILE
 // ============================================================
-
 function formatDate(iso) {
   if (!iso) return 'Jan 2023';
   const d = new Date(iso);
@@ -230,9 +152,9 @@ function populateProfile() {
   const av = document.querySelector('.avatar-large');
   if (av) {
     if (user.avatar) {
-      av.innerHTML = `<img src="${user.avatar}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"><span class="avatar-overlay">📷</span>`;
+      av.innerHTML = `<img src="${user.avatar}" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"><span class="avatar-overlay"><img src="../../Imagens/câmera.png" style="width: 40px; height:40px;"></span>`;
     } else {
-      av.innerHTML = `<span>${user.initials || 'U'}</span><span class="avatar-overlay">📷</span>`;
+      av.innerHTML = `<span>${user.initials || 'U'}</span><span class="avatar-overlay"><img src="../../Imagens/câmera.png" style="width: 40px; height:40px;"></span>`;
     }
     av.addEventListener('click', () => document.getElementById('profileAvatarInput')?.click());
   }

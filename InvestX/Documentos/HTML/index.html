@@ -8,20 +8,21 @@
   <title>InvestX — Dashboard</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../CSS/style.css">
+  <link rel="stylesheet" href="../CSS/profile.css">
 </head>
 <body>
-
-<!-- ======= TOPBAR ======= -->
 <header class="topbar">
-  <span style="display:flex;align-items:center;gap:12px;">
+  <span style="display:flex; align-items:center; gap:12px;">
     <button class="btn-mobile-menu" onclick="toggleSidebar()">
       <span></span><span></span><span></span>
     </button>
     <span class="logo" onclick="navigate('dashboard')">
       <span class="logo-icon">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAD7UlEQVR4AdSWV6gVVxSGJ4UUUiAJCSmQnkAaJHlJh7Q3RR+sWLFg7ygqghUUG/aOCHYsWFDwxYodLNjwwd4VFAUVG+r3zZ193Gc8997jk3j4/7XWXmvPrDl7r12eT57S75lJ7If+xiA1gj0zav+KbQxVHsrt/C2vmwYvwa1wHhyZUXsbtrHJaPuiqkZ1id/n8RXwIGwD34GVwVh7gvZdgn4PVoqqEn/BU/6TWmhxH7ES9oc14QcZtQdgG3uAFnUQ2+FnsCQqS/wJvU36KVocR/wOa8MhcDW8kFF7MLaxP9CnoDCpyT+2kWepxC/TaRV8F4rpiO/hDhjgBw2kIbUxU/ix32HNgMLhXobhO1GPUCrxaMImQiUTEW3hTRjjTxoOr4wT406uI6yHKWjxM2IYLEI+8ZdE20FxFNELxmhK4xicAwPmYvSBz8EYPnsyc3RBfw0LyCd2bb5A1EJqgL4FA2zPpuHcoQr4CMt/NAEd4waNxtCC852dsQuIE/vF9bKIa3VXZgflR2nfQfiP/fctsfdA0RHxFoyxhUaoDSvdHLiSJE78F563obAa1TF/yBrj0c2gQzwLXR8OyvgqOg8LTp/Lzx1Ouyjxj6mnQpRKfL4ilJjUoa1L+2/4BrS65TnsPEJi/T8pZPyPX9eRcWOmY2WF23aJWEyLaayHu6HDbQFhPoY48ZshGid27oL/xWBEegy2CQ+h83C0xuFsAfO4FznuBjtO7CYf/L4o2EFb6cNpuEH8gv4HWowj0Neg6KrIsTC8+N3tUMXFtT/1VIhSifsSch5roHfCDdDDoDd6ORSfK3KMExdyxP/YebqSPVQqcTgMFtLH3c3iaoLt0mqOFocVOYbEV/HvgynixDrWKqAbftFOg687dDu0CHtgW1wmNTnNxLkMa922/ArhB6OSNYrAfOJJWeAV9FL4EgxweF3rVnLwBe3p9T+NTTDAZz0gfJe+sYrAfGKXkQe/cQ8Ki0k7cC/Gv9BhRqVwB3NufTZ1ZMLpsBBtLkKEHQyzuLhSB6IVDGdqN2yPuNfQMdxOw261OQ5gu6HMRHeCwsOmg0bM/D82dhnxH7wIRWuEa9ddCjPFCaQVLrVppnCJHcByD0clvsMp8J22CyyV2OARhOdo2Dq9RTi33qe80DUk/iH0LPaWORXbj1uHti8q8YCwouMP05+yssQG3XctJu9Yt3VAb5Be6BZgn4UWlbdMLwvf0Bb27YfhCIX9nWYxqkpsT5eIdyyXhTeKx4bMThmN2cfLxFB8PosqjeoSh6dOY1ggHhBe6D3gvWFIbX3G7HOGvtWi3MThRe7Xzvt8HKMyauszhqs8PGni8t5aRq+HAAAA//++iSM6AAAABklEQVQDAPdMuT25PGg0AAAAAElFTkSuQmCC" alt="X">
+        <img src="../../Imagens/logo.png" alt="X">
       </span>
-      Invest<em>X</em>
+      <div class="nomelogo">
+          Invest<em>X</em>
+      </div>
     </span>
   </span>
   <span class="top-actions">
@@ -30,15 +31,12 @@
     <button class="btn-mobile-chat" onclick="toggleChat()">
       <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAABm0lEQVR4AeyWu0rEQBSGo+AFfANLGwtvtY2inYWgjZWdb6Hg3bewERuxUF/AQtBKLGzER/DWKxbq949kObubE0hCZrfY5f9nMplz5sucHXbTn3To0zXgaQqwhXcreJNcrUPny+54lrBHfIh3KviIXK0zQ+/KghfcqHITS3lpFjxoAvu4LmtSg4ZD6zQW7ITUc7sHrqeuGavGKvU37AvcOHCxwANAV/EaDooFDjCaMRwUGxygaroWvMHTfeHfAiY06Ce0TuPteIT4U3yMh3AZ3eUleeAHktax9EZzgPcKWCf4mnjJ/gdoHOyBx8NsktzST+BtXOQ/+or4VHPphe09sL4fgeYJ/sBlpB+LFRJPcJuywK9ECajS6gEYBum6yCH7JOsSj+I2tYJV2kmi1NM16b5pVHFgwWespZ16pV1mXuVXJfKsg+itwRL/suBnbqmcdJnS6RZQ8DzrIE6xwg12ZcFuUImJF3IW8T7O3ExdYHiJgHpb1QO864Z1neCUo5LrPVt9ei+JARYsLf25BnIssFgq/ZMu5Jhg8Rr+AwAA//+WT13LAAAABklEQVQDAPNfaT2pBidVAAAAAElFTkSuQmCC" alt="chat">
     </button>
-    <a href="perfil.html" class="user-avatar" title="Perfil">VF</a>
+    <a href="#" onclick="navigate('perfil');return false;" class="user-avatar" title="Perfil">ES</a>
   </span>
 </header>
-
 <span class="sidebar-overlay" id="overlay" onclick="closeAll()"></span>
 
 <main class="layout">
-
-<!-- ======= SIDEBAR ======= -->
 <aside class="sidebar" id="sidebar">
   <nav class="sidebar-nav">
     <div class="nav-group">
@@ -48,17 +46,17 @@
       <button class="nav-item" onclick="navigate('mercado')"><span class="nav-icon">◉</span> Mercado</button>
       <button class="nav-item" onclick="navigate('analise')"><span class="nav-icon">⟁</span> Análise IA</button>
       <button class="nav-item" onclick="navigate('alertas')"><span class="nav-icon">◈</span> Alertas</button>
-      <button class="nav-item" onclick="navigate('negociar')" style="border:1px solid rgba(220,38,38,0.3);margin-top:4px;"><span class="nav-icon">⚡</span> Negociar</button>
+      <button class="nav-item" onclick="navigate('negociar')" ><span class="nav-icon">◉</span> Negociar</button>
     </div>
     <div class="nav-group">
-      <span class="nav-label" style="margin-top:8px;">Conta</span>
-      <button class="nav-item" onclick="location.href='perfil.html'"><span class="nav-icon">◎</span> Perfil</button>
-      <button class="nav-item" onclick="location.href='config.html'"><span class="nav-icon">⚙</span> Configurações</button>
+      <span class="nav-label-2" style="margin-top:8px;">Conta</span>
+      <button class="nav-item" onclick="navigate('perfil')"><span class="nav-icon">◎</span> Perfil</button>
+      <button class="nav-item" onclick="navigate('config')"><span class="nav-icon">⚙</span> Configurações</button>
       <button class="nav-item" onclick="logout()" style="margin-top:4px;"><span class="nav-icon">⇥</span> Sair</button>
     </div>
   </nav>
   <section class="market-mini">
-    <span class="nav-label" style="padding:0 0 6px;font-size:10px;">Índices</span>
+    <span class="nav-label" style="padding:0 0 6px;font-size:12px;">Índices</span>
     <article class="mini-asset"><span class="mini-name">IBOV</span><span class="mini-val up">▲ 128.741</span></article>
     <article class="mini-asset"><span class="mini-name">S&P500</span><span class="mini-val up">▲ 5.248</span></article>
     <article class="mini-asset"><span class="mini-name">BTC/USD</span><span class="mini-val up">▲ 84.210</span></article>
@@ -66,10 +64,7 @@
   </section>
 </aside>
 
-<!-- ======= CONTENT AREA ======= -->
 <section class="content-area">
-
-  <!-- ===== DASHBOARD ===== -->
   <section class="page-view active" id="view-dashboard">
     <section class="metrics">
       <article class="metric-card" onclick="navigate('portfolio')">
@@ -77,64 +72,40 @@
         <p class="metric-value">R$ 48.320</p>
         <p class="metric-change up">▲ +R$ 1.240 hoje</p>
         <p class="metric-sub">vs. ontem: R$ 47.080</p>
-        <div style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px;display:flex;justify-content:space-between;">
-          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">Mês: <span style="color:var(--red-glow)">+R$3.740</span></span>
-          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">Ano: <span style="color:var(--red-glow)">+R$8.120</span></span>
-        </div>
       </article>
       <article class="metric-card" onclick="navigate('portfolio')">
         <p class="metric-label">Rentabilidade Mês:</p>
         <p class="metric-value up">+8,4%</p>
         <p class="metric-change up">▲ Acima do CDI</p>
         <p class="metric-sub">CDI: +0,87% · IBOV: +3,2%</p>
-        <div style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px;display:flex;justify-content:space-between;">
-          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">12M: <span style="color:var(--red-glow)">+31,5%</span></span>
-          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">Sharpe: <span style="color:var(--red-glow)">1.82</span></span>
-        </div>
       </article>
       <article class="metric-card" onclick="navigate('analise')">
         <p class="metric-label">Score IA:</p>
         <p class="metric-value" style="color:var(--red-glow)">87/100</p>
         <p class="metric-change up">▲ +3 pts semana</p>
         <p class="metric-sub">Perfil: Moderado</p>
-        <div style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px;display:flex;justify-content:space-between;">
-          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">Risco: <span style="color:#f59e0b">Médio</span></span>
-          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">Div.: <span style="color:var(--red-glow)">Boa</span></span>
-        </div>
       </article>
       <article class="metric-card" onclick="navigate('alertas')">
         <p class="metric-label">Posições Abertas:</p>
         <p class="metric-value">12</p>
         <p class="metric-change" style="color:var(--gray)">3 com alerta IA</p>
         <p class="metric-sub">2 aguard. revisão</p>
-        <div style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px;display:flex;justify-content:space-between;">
-          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">Lucrativas: <span style="color:var(--red-glow)">9/12</span></span>
-          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">Stop: <span style="color:#f59e0b">2</span></span>
-        </div>
       </article>
       <article class="metric-card" onclick="navigate('portfolio')" style="cursor:pointer;">
         <p class="metric-label">Dividendos (mês):</p>
         <p class="metric-value" style="color:var(--red-glow)">R$ 420</p>
         <p class="metric-change up">▲ +R$80 vs mês ant.</p>
         <p class="metric-sub">Yield médio: 8,7% a.a.</p>
-        <div style="margin-top:8px;border-top:1px solid var(--border);padding-top:8px;display:flex;justify-content:space-between;">
-          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">FIIs: <span style="color:var(--red-glow)">R$310</span></span>
-          <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray)">Ações: <span style="color:var(--red-glow)">R$110</span></span>
-        </div>
       </article>
       <article class="metric-card" onclick="navigate('negociar')" style="cursor:pointer;border-color:rgba(220,38,38,0.3);">
         <p class="metric-label">Poder de Compra:</p>
         <p class="metric-value">R$ 5.200</p>
         <p class="metric-change" style="color:var(--gray)">Saldo disponível</p>
         <p class="metric-sub">Margem: R$12.000</p>
-        <div style="margin-top:8px;border-top:1px solid rgba(220,38,38,0.3);padding-top:8px;text-align:center;">
-          <span style="font-family:'Bebas Neue',sans-serif;font-size:13px;color:var(--red-bright);letter-spacing:1px;">⚡ NEGOCIAR AGORA</span>
-        </div>
       </article>
     </section>
 
     <section class="dash-center">
-      <!-- Chart panel -->
       <section class="chart-panel">
         <header class="panel-header">
           <h2 class="panel-title">Gráfico <em>Ativo</em></h2>
@@ -213,7 +184,7 @@
       <aside class="chat-panel" id="chatPanel">
         <header class="chat-header">
           <span class="ai-avatar">
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAD7UlEQVR4AdSWV6gVVxSGJ4UUUiAJCSmQnkAaJHlJh7Q3RR+sWLFg7ygqghUUG/aOCHYsWFDwxYodLNjwwd4VFAUVG+r3zZ193Gc8997jk3j4/7XWXmvPrDl7r12eT57S75lJ7If+xiA1gj0zav+KbQxVHsrt/C2vmwYvwa1wHhyZUXsbtrHJaPuiqkZ1id/n8RXwIGwD34GVwVh7gvZdgn4PVoqqEn/BU/6TWmhxH7ES9oc14QcZtQdgG3uAFnUQ2+FnsCQqS/wJvU36KVocR/wOa8MhcDW8kFF7MLaxP9CnoDCpyT+2kWepxC/TaRV8F4rpiO/hDhjgBw2kIbUxU/ix32HNgMLhXobhO1GPUCrxaMImQiUTEW3hTRjjTxoOr4wT406uI6yHKWjxM2IYLEI+8ZdE20FxFNELxmhK4xicAwPmYvSBz8EYPnsyc3RBfw0LyCd2bb5A1EJqgL4FA2zPpuHcoQr4CMt/NAEd4waNxtCC852dsQuIE/vF9bKIa3VXZgflR2nfQfiP/fctsfdA0RHxFoyxhUaoDSvdHLiSJE78F563obAa1TF/yBrj0c2gQzwLXR8OyvgqOg8LTp/Lzx1Ouyjxj6mnQpRKfL4ilJjUoa1L+2/4BrS65TnsPEJi/T8pZPyPX9eRcWOmY2WF23aJWEyLaayHu6HDbQFhPoY48ZshGid27oL/xWBEegy2CQ+h83C0xuFsAfO4FznuBjtO7CYf/L4o2EFb6cNpuEH8gv4HWowj0Neg6KrIsTC8+N3tUMXFtT/1VIhSifsSch5roHfCDdDDoDd6ORSfK3KMExdyxP/YebqSPVQqcTgMFtLH3c3iaoLt0mqOFocVOYbEV/HvgynixDrWKqAbftFOg687dDu0CHtgW1wmNTnNxLkMa922/ArhB6OSNYrAfOJJWeAV9FL4EgxweF3rVnLwBe3p9T+NTTDAZz0gfJe+sYrAfGKXkQe/cQ8Ki0k7cC/Gv9BhRqVwB3NufTZ1ZMLpsBBtLkKEHQyzuLhSB6IVDGdqN2yPuNfQMdxOw261OQ5gu6HMRHeCwsOmg0bM/D82dhnxH7wIRWuEa9ddCjPFCaQVLrVppnCJHcByD0clvsMp8J22CyyV2OARhOdo2Dq9RTi33qe80DUk/iH0LPaWORXbj1uHti8q8YCwouMP05+yssQG3XctJu9Yt3VAb5Be6BZgn4UWlbdMLwvf0Bb27YfhCIX9nWYxqkpsT5eIdyyXhTeKx4bMThmN2cfLxFB8PosqjeoSh6dOY1ggHhBe6D3gvWFIbX3G7HOGvtWi3MThRe7Xzvt8HKMyauszhqs8PGni8t5aRq+HAAAA//++iSM6AAAABklEQVQDAPdMuT25PGg0AAAAAElFTkSuQmCC" alt="Ω">
+            <img src="../../Imagens/logo.png" alt="Ω">
           </span>
           <span>
             <p class="chat-ai-name">OMEGA IA</p>
@@ -223,17 +194,17 @@
         <ol class="chat-messages" id="chatMessages">
           <li class="msg msg-ai">
             <p class="msg-tag">OMEGA IA</p>
-            <p class="msg-bubble">Olá! 👋 Sou a **OMEGA IA**, sua assistente de investimentos. Posso analisar ações, FIIs, criptos, renda fixa e responder qualquer dúvida — financeira ou não. Como posso ajudar hoje?</p>
+            <p class="msg-bubble">Olá! Sou a **OMEGA IA**, sua assistente de investimentos. Posso analisar ações, FIIs, criptos, renda fixa e responder qualquer dúvida — financeira ou não. Como posso ajudar hoje?</p>
             <time class="msg-time">agora mesmo</time>
           </li>
         </ol>
         <nav class="suggestion-chips">
-          <button class="chip" onclick="sendChip(this)">📊 Analise meu portfólio</button>
-          <button class="chip" onclick="sendChip(this)">🔴 Melhores ações hoje</button>
-          <button class="chip" onclick="sendChip(this)">₿ Como está o Bitcoin?</button>
-          <button class="chip" onclick="sendChip(this)">📈 O que é RSI?</button>
-          <button class="chip" onclick="sendChip(this)">💰 Melhor FII para dividendos</button>
-          <button class="chip" onclick="sendChip(this)">⚡ Selic e meus investimentos</button>
+          <button class="chip" onclick="sendChip(this)"> Analise meu portfólio</button>
+          <button class="chip" onclick="sendChip(this)"> Melhores ações hoje</button>
+          <button class="chip" onclick="sendChip(this)">₿ - Como está o Bitcoin?</button>
+          <button class="chip" onclick="sendChip(this)"> O que é RSI?</button>
+          <button class="chip" onclick="sendChip(this)"> Melhor FII para dividendos</button>
+          <button class="chip" onclick="sendChip(this)"> Selic e meus investimentos</button>
         </nav>
         <footer class="chat-input-area">
           <textarea class="chat-input" id="chatInput" placeholder="Pergunte qualquer coisa à OMEGA IA..." rows="1"
@@ -250,11 +221,10 @@
     </section>
   </section>
 
-  <!-- ===== PORTFOLIO ===== -->
   <section class="page-view" id="view-portfolio">
     <span class="inner-page">
       <h1 class="page-title"><em>MEU</em> PORTFÓLIO</h1>
-      <p class="page-sub">// 12 posições abertas · atualizado agora</p>
+      <p class="page-sub"> 12 posições abertas · atualizado agora</p>
       <section class="summary-grid">
         <article class="summary-card"><span class="sc-label">Patrimônio Total</span><p class="sc-value">R$ 48.320</p><p class="sc-change up">▲ +R$1.240 hoje</p></article>
         <article class="summary-card"><span class="sc-label">Rentabilidade Mês</span><p class="sc-value up">+8,4%</p><p class="sc-change up">▲ CDI: 0,87%</p></article>
@@ -330,16 +300,30 @@
     </span>
   </section>
 
-  <!-- ===== MERCADO ===== -->
   <section class="page-view" id="view-mercado">
     <span class="inner-page">
       <h1 class="page-title">VISÃO DO <em>MERCADO</em></h1>
-      <p class="page-sub">// B3 — Sessão aberta · IBOV +0,87% · Vol. R$18,4bi</p>
+      <p class="page-sub"> B3 — Sessão aberta · IBOV +0,87% · Vol. R$18,4bi</p>
       <section class="ticker-bar">
-        <span class="ticker-scroll">
-          <span class="t-up">PETR4 ▲ +2.30%</span><span class="t-dn">VALE3 ▼ -0.80%</span><span class="t-up">ITUB4 ▲ +1.10%</span><span class="t-up">BBDC4 ▲ +0.50%</span><span class="t-dn">MGLU3 ▼ -3.20%</span><span class="t-up">WEGE3 ▲ +0.90%</span><span class="t-up">BTC ▲ +4.70%</span><span class="t-up">ETH ▲ +2.90%</span>
-          <span class="t-up">PETR4 ▲ +2.30%</span><span class="t-dn">VALE3 ▼ -0.80%</span><span class="t-up">ITUB4 ▲ +1.10%</span><span class="t-up">BBDC4 ▲ +0.50%</span><span class="t-dn">MGLU3 ▼ -3.20%</span><span class="t-up">WEGE3 ▲ +0.90%</span><span class="t-up">BTC ▲ +4.70%</span><span class="t-up">ETH ▲ +2.90%</span>
+        <span id="tickerTrack">
+          <span class="t-up">PETR4 ▲ +2.30%&nbsp;&nbsp;&nbsp;</span>
+          <span class="t-dn">VALE3 ▼ -0.80%&nbsp;&nbsp;&nbsp;</span>
+          <span class="t-up">ITUB4 ▲ +1.10%&nbsp;&nbsp;&nbsp;</span>
+          <span class="t-up">BTC ▲ +4.70%&nbsp;&nbsp;&nbsp;</span>
+          <span class="t-up">ETH ▲ +2.90%&nbsp;&nbsp;&nbsp;</span>
+          <span class="t-dn">MGLU3 ▼ -3.20%&nbsp;&nbsp;&nbsp;</span>
+          <span class="t-up">WEGE3 ▲ +0.90%&nbsp;&nbsp;&nbsp;</span>
+          <span class="t-up">IBOV ▲ +0.87%&nbsp;&nbsp;&nbsp;</span>
+          <span class="t-up">PETR4 ▲ +2.30%&nbsp;&nbsp;&nbsp;</span>
+          <span class="t-dn">VALE3 ▼ -0.80%&nbsp;&nbsp;&nbsp;</span>
+          <span class="t-up">ITUB4 ▲ +1.10%&nbsp;&nbsp;&nbsp;</span>
+          <span class="t-up">BTC ▲ +4.70%&nbsp;&nbsp;&nbsp;</span>
+          <span class="t-up">ETH ▲ +2.90%&nbsp;&nbsp;&nbsp;</span>
+          <span class="t-dn">MGLU3 ▼ -3.20%&nbsp;&nbsp;&nbsp;</span>
+          <span class="t-up">WEGE3 ▲ +0.90%&nbsp;&nbsp;&nbsp;</span>
+          <span class="t-up">IBOV ▲ +0.87%&nbsp;&nbsp;&nbsp;</span>
         </span>
+      </div>
       </section>
       <nav class="market-tabs">
         <button class="mtab active" onclick="switchMarketTab(this,'acoes')">AÇÕES</button>
@@ -356,28 +340,24 @@
     </span>
   </section>
 
-  <!-- ===== ANÁLISE IA ===== -->
   <section class="page-view" id="view-analise">
     <span class="inner-page">
       <h1 class="page-title">ANÁLISE <em>IA</em></h1>
-      <p class="page-sub">// motor OMEGA v3.2 · último scan: 2 min atrás</p>
+      <p class="page-sub"> motor OMEGA v3.2 · último scan: 2 min atrás</p>
       <section class="score-section">
         <article class="score-card">
-          <svg width="120" height="120" viewBox="0 0 120 120" style="overflow:visible">
-            <circle class="ring-bg" cx="60" cy="60" r="50"/>
-            <circle class="ring-fg" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="40"/>
-          </svg>
-          <p class="score-number">87</p>
+            <img src="../../Imagens/robô.png" alt="ícone robô" class="score-icone">
+          <p class="score-number">87%</p>
           <p class="score-lbl">SCORE OMEGA</p>
-          <p style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray);text-align:center;">Perfil Moderado<br>▲ +3pts esta semana</p>
+          <p style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray);text-align:center; margin-top: 20px;">Perfil Moderado<br>▲ +3pts esta semana</p>
         </article>
         <article class="insights-card">
           <h3 class="ic-title">INSIGHTS <em>DO DIA</em></h3>
           <ul class="insight-list">
-            <li class="insight-item"><span class="insight-icon">🔥</span><span class="insight-text"><strong>PETR4 em zona de oportunidade</strong><p>Rompeu a média de 20 períodos com volume 40% acima do normal. RSI em 58 — não sobrecomprado.</p><span class="insight-badge badge-buy">COMPRAR</span></span></li>
-            <li class="insight-item"><span class="insight-icon">⚠️</span><span class="insight-text"><strong>VALE3 em tendência de queda</strong><p>Correlação com minério negativa. Risco de suporte em R$60 não ser mantido.</p><span class="insight-badge badge-warn">ATENÇÃO</span></span></li>
-            <li class="insight-item"><span class="insight-icon">₿</span><span class="insight-text"><strong>Bitcoin — momentum altista</strong><p>Rompeu resistência de R$420k. Próximo alvo: R$450k. Sentimento: 72/100.</p><span class="insight-badge badge-buy">MANTER</span></span></li>
-            <li class="insight-item"><span class="insight-icon">📊</span><span class="insight-text"><strong>Diversificação recomendada</strong><p>70% em renda variável aumenta risco. Rebalancear 10% para FIIs ou renda fixa.</p><span class="insight-badge badge-hold">REBALANCEAR</span></span></li>
+            <li class="insight-item"><span class="insight-icon"><img src="../../Imagens/gráfico.webp" style="width: 30px;"></span><span class="insight-text"><strong>PETR4 em zona de oportunidade</strong><p>Rompeu a média de 20 períodos com volume 40% acima do normal. RSI em 58 — não sobrecomprado.</p><span class="insight-badge badge-buy">COMPRAR</span></span></li>
+            <li class="insight-item"><span class="insight-icon"><img src="../../Imagens/sino.png" style="width: 30px;"></span><span class="insight-text"><strong>VALE3 em tendência de queda</strong><p>Correlação com minério negativa. Risco de suporte em R$60 não ser mantido.</p><span class="insight-badge badge-warn">ATENÇÃO</span></span></li>
+            <li class="insight-item"><span class="insight-icon" style="margin-left: 10px; margin-right: 7px;">₿</span><span class="insight-text"><strong>Bitcoin — momentum altista</strong><p>Rompeu resistência de R$420k. Próximo alvo: R$450k. Sentimento: 72/100.</p><span class="insight-badge badge-buy">MANTER</span></span></li>
+            <li class="insight-item"><span class="insight-icon"><img src="../../Imagens/raio.png" style="width: 30px;"></span><span class="insight-text"><strong>Diversificação recomendada</strong><p>70% em renda variável aumenta risco. Rebalancear 10% para FIIs ou renda fixa.</p><span class="insight-badge badge-hold">REBALANCEAR</span></span></li>
           </ul>
         </article>
       </section>
@@ -399,11 +379,10 @@
     </span>
   </section>
 
-  <!-- ===== ALERTAS ===== -->
   <section class="page-view" id="view-alertas">
     <span class="inner-page">
       <h1 class="page-title">CENTRAL DE <em>ALERTAS</em></h1>
-      <p class="page-sub">// 3 alertas ativos · 2 disparados hoje</p>
+      <p class="page-sub"> 3 alertas ativos · 2 disparados hoje</p>
       <section class="alert-stats">
         <article class="stat-pill"><p class="stat-pill-num" style="color:var(--red-glow)">3</p><p class="stat-pill-lbl">Ativos</p></article>
         <article class="stat-pill"><p class="stat-pill-num" style="color:#f59e0b">2</p><p class="stat-pill-lbl">Disparados</p></article>
@@ -412,17 +391,17 @@
       </section>
       <section class="alerts-container" id="alertsContainer">
         <article class="alert-item urgent">
-          <span class="alert-icon-wrap red">🔥</span>
+          <span class="alert-icon-wrap red"><img src="../../Imagens/sino.png" style="width: 30px;"></span>
           <span class="alert-body"><p class="alert-title">PETR4 atingiu alvo de preço</p><p class="alert-desc">Ultrapassou R$37,00 — operando em +2,3%. Possível momento de realização de lucro.</p><span class="alert-meta"><span class="alert-asset">PETR4</span><time class="alert-time-tag">há 12 min</time></span></span>
           <span class="alert-action"><button class="btn-goto" onclick="navigate('portfolio')">Ver ativo</button><button class="btn-dismiss" onclick="dismissAlert(this)">Dispensar</button></span>
         </article>
         <article class="alert-item urgent">
-          <span class="alert-icon-wrap yellow">⚠️</span>
+          <span class="alert-icon-wrap yellow"><img src="../../Imagens/raio.png" style="width: 30px;"></span>
           <span class="alert-body"><p class="alert-title">VALE3 abaixo da média móvel 20</p><p class="alert-desc">Cruzou abaixo da MM20 pela segunda vez esta semana — sinal de possível continuação de baixa.</p><span class="alert-meta"><span class="alert-asset">VALE3</span><time class="alert-time-tag">há 38 min</time></span></span>
           <span class="alert-action"><button class="btn-goto" onclick="navigate('analise')">Ver análise</button><button class="btn-dismiss" onclick="dismissAlert(this)">Dispensar</button></span>
         </article>
         <article class="alert-item">
-          <span class="alert-icon-wrap gray">📊</span>
+          <span class="alert-icon-wrap gray"><img src="../../Imagens/gráfico.webp" style="width: 30px;"></span>
           <span class="alert-body"><p class="alert-title">Revisão semanal disponível</p><p class="alert-desc">Relatório de performance gerado pela OMEGA IA. Confira insights e oportunidades.</p><span class="alert-meta"><span class="alert-asset">PORTFÓLIO</span><time class="alert-time-tag">há 2h</time></span></span>
           <span class="alert-action"><button class="btn-goto" onclick="navigate('analise')">Ver relatório</button><button class="btn-dismiss" onclick="dismissAlert(this)">Dispensar</button></span>
         </article>
@@ -444,12 +423,10 @@
     </span>
   </section>
 
-  <!-- ===== NEGOCIAR ===== -->
   <section class="page-view" id="view-negociar">
     <span class="inner-page">
       <h1 class="page-title">NEGOCIAR <em>ATIVOS</em></h1>
-      <p class="page-sub">// B3 · Crypto · Simulação de ordens · OMEGA IA assistindo</p>
-
+      <p class="page-sub"> B3 · Crypto · Simulação de ordens · OMEGA IA assistindo</p>
       <section style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
         <article class="metric-card" style="cursor:default;">
           <p class="metric-label">Saldo Disponível</p>
@@ -462,16 +439,12 @@
           <p class="metric-sub">2 executadas · 1 pendente</p>
         </article>
       </section>
-
-      <!-- Tabs: Comprar | Vender | Simular -->
       <nav class="market-tabs" style="margin-bottom:20px;">
         <button class="mtab active" onclick="switchTradeTab(this,'comprar')">COMPRAR</button>
         <button class="mtab" onclick="switchTradeTab(this,'vender')">VENDER</button>
         <button class="mtab" onclick="switchTradeTab(this,'simular')">SIMULAR</button>
         <button class="mtab" onclick="switchTradeTab(this,'ordens')">ORDENS</button>
       </nav>
-
-      <!-- COMPRAR -->
       <div id="trade-comprar" class="trade-panel">
         <section style="display:grid;grid-template-columns:1.2fr 1fr;gap:20px;align-items:start;">
           <article style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px;">
@@ -525,13 +498,11 @@
                 </div>
               </div>
               <button onclick="executeOrder('compra')" style="background:var(--red-bright);color:white;border:none;padding:14px;border-radius:6px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;cursor:pointer;box-shadow:0 0 20px rgba(220,38,38,.4);transition:all .2s;" onmouseover="this.style.boxShadow='0 0 32px rgba(239,68,68,.6)'" onmouseout="this.style.boxShadow='0 0 20px rgba(220,38,38,.4)'">
-                ⚡ ENVIAR ORDEM DE COMPRA
+                 ENVIAR ORDEM DE COMPRA
               </button>
               <p style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--gray);text-align:center;line-height:1.5;">⚠ Simulação educacional · Nenhuma ordem real é executada · Não constitui recomendação de investimento</p>
             </div>
           </article>
-
-          <!-- Info do ativo selecionado -->
           <article style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px;">
             <h3 style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:var(--white);margin-bottom:16px;">INFO DO <em style="color:var(--red-bright)">ATIVO</em></h3>
             <div id="trade-asset-info" style="display:flex;flex-direction:column;gap:10px;">
@@ -563,8 +534,6 @@
           </article>
         </section>
       </div>
-
-      <!-- VENDER -->
       <div id="trade-vender" class="trade-panel" style="display:none;">
         <section style="display:grid;grid-template-columns:1.2fr 1fr;gap:20px;align-items:start;">
           <article style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px;">
@@ -643,8 +612,6 @@
           </article>
         </section>
       </div>
-
-      <!-- SIMULAR -->
       <div id="trade-simular" class="trade-panel" style="display:none;">
         <section style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
           <article style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px;">
@@ -686,7 +653,6 @@
               </button>
             </div>
           </article>
-
           <article style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px;" id="sim-result-card">
             <h3 style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:var(--white);margin-bottom:16px;">RESULTADO <em style="color:var(--red-bright)">PROJETADO</em></h3>
             <div style="display:flex;flex-direction:column;gap:10px;" id="sim-results">
@@ -721,8 +687,6 @@
           </article>
         </section>
       </div>
-
-      <!-- ORDENS -->
       <div id="trade-ordens" class="trade-panel" style="display:none;">
         <article style="background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;">
           <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
@@ -772,11 +736,215 @@
           </table>
         </article>
       </div>
-
     </span>
   </section>
 
-</section><!-- /content-area -->
+  <section class="page-view" id="view-perfil">
+    <section class="page-content" style="overflow-y:auto;flex:1;padding:24px;background:var(--black);">
+
+      <h1 class="page-title"><em>PERFIL</em></h1>
+      <p class="page-sub"> gerencie suas informações e preferências pessoais</p>
+
+      <section class="profile-hero">
+        <span class="avatar-large" id="profileAvatarLarge">?
+          <span class="avatar-overlay"><img src="../../Imagens/câmera.png"></span>
+        </span>
+        <span class="profile-info">
+          <h2 id="profileName"><em>USUÁRIO</em></h2>
+          <p id="profileEmailLine">email@exemplo.com &nbsp;·&nbsp; Membro</p>
+          <span class="profile-badges">
+            <span class="pbadge" id="badgeRisco">Perfil Moderado</span>
+            <span class="pbadge">Score 87/100</span>
+            <span class="pbadge gray">Plano Pro</span>
+          </span>
+        </span>
+      </section>
+      <section class="profile-stats">
+        <article class="pstat"><p class="pstat-val">R$48k</p><p class="pstat-lbl">Patrimônio</p></article>
+        <article class="pstat"><p class="pstat-val up">+8,4%</p><p class="pstat-lbl">Rent. Mês</p></article>
+        <article class="pstat"><p class="pstat-val">12</p><p class="pstat-lbl">Posições</p></article>
+        <article class="pstat"><p class="pstat-val" id="statMonths">—</p><p class="pstat-lbl">Na plataforma</p></article>
+      </section>
+
+      <section class="two-col">
+        <article class="profile-card">
+          <h3 class="pc-title">EDITAR <em>PERFIL</em></h3>
+          <fieldset class="edit-form">
+            <span>
+              <label class="field-label" for="p-name">Nome completo</label>
+              <input class="field-input" id="p-name" type="text" placeholder="Seu nome">
+            </span>
+            <span>
+              <label class="field-label" for="p-email">E-mail</label>
+              <input class="field-input" id="p-email" type="email" placeholder="seu@email.com">
+            </span>
+            <span>
+              <label class="field-label" for="p-perfil">Perfil de risco</label>
+              <select class="field-input" id="p-perfil">
+                <option>Conservador</option>
+                <option>Moderado</option>
+                <option>Arrojado</option>
+                <option>Agressivo</option>
+              </select>
+            </span>
+            <span>
+              <label class="field-label">Foto de perfil</label>
+                <label for="p-avatar" class="custom-file-upload">Escolher arquivo</label>
+              <input class="field-input" id="p-avatar" type="file" accept="image/*" style="padding:6px 12px;cursor:pointer;" onchange="previewAvatar(this)">
+            </span>
+            <button class="btn-save" onclick="saveProfile()">SALVAR ALTERAÇÕES</button>
+            <p id="saveMsg" style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--red-glow);display:none;margin-top:4px;">✓ Alterações salvas!</p>
+          </fieldset>
+        </article>
+
+        <article class="profile-card">
+          <h3 class="pc-title">ATIVIDADE <em>RECENTE</em></h3>
+          <ul class="activity-list">
+            <li class="activity-item">
+              <span class="act-icon"><img src="../../Imagens/gráfico.webp" style="width: 25px;"></span>
+              <span class="act-text"><strong>Análise de portfólio consultada</strong><time>hoje, 14:32</time></span>
+            </li>
+            <li class="activity-item">
+              <span class="act-icon"><img src="../../Imagens/sino.png" style="width: 25px;"></span>
+              <span class="act-text"><strong>Alerta PETR4 criado — R$37,00</strong><time>hoje, 11:10</time></span>
+            </li>
+            <li class="activity-item">
+              <span class="act-icon"><img src="../../Imagens/robô.png" style="width: 25px;"></span>
+              <span class="act-text"><strong>OMEGA IA consultada — 8 perguntas</strong><time>ontem, 16:45</time></span>
+            </li>
+            <li class="activity-item">
+              <span class="act-icon"><img src="../../Imagens/raio.png" style="width: 25px;"></span>
+              <span class="act-text"><strong>Relatório semanal gerado</strong><time>seg, 08:00</time></span>
+            </li>
+            <li class="activity-item">
+              <span class="act-icon"><img src="../../Imagens/segurança.png" style="width: 25px;"></span>
+              <span class="act-text"><strong>Login realizado</strong><time>seg, 07:58</time></span>
+            </li>
+          </ul>
+        </article>
+      </section>
+    </section>
+  </section>
+
+
+  <section class="page-view" id="view-config">
+    <section class="page-content" style="overflow-y:auto;flex:1;padding:24px;background:var(--black);">
+      <h1 class="page-title"><em>CONFIGURAÇÕES</em></h1>
+      <p class="page-sub"> personalize a OMEGA IA e suas preferências</p>
+      <section class="config-grid">  
+        <article class="config-card">
+          <header class="config-card-header">
+            <h3 class="cc-title">NOTIFICAÇÕES <em>&amp; ALERTAS</em></h3>
+          </header>
+          <ul class="toggle-list">
+            <li class="toggle-item">
+              <span class="toggle-info"><strong>Alertas de preço</strong><span>Notificar quando metas forem atingidas</span></span>
+              <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </li>
+            <li class="toggle-item">
+              <span class="toggle-info"><strong>Relatório diário IA</strong><span>Receber análise matinal às 08h</span></span>
+              <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </li>
+            <li class="toggle-item">
+              <span class="toggle-info"><strong>Notificações por e-mail</strong><span>Alertas críticos no e-mail cadastrado</span></span>
+              <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </li>
+            <li class="toggle-item">
+              <span class="toggle-info"><strong>Sinais de compra/venda</strong><span>Push quando OMEGA identificar oportunidade</span></span>
+              <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </li>
+          </ul>
+        </article>
+
+        <article class="config-card">
+          <header class="config-card-header">
+            <h3 class="cc-title">OMEGA <em>IA</em></h3>
+          </header>
+          <ul class="toggle-list">
+            <li class="toggle-item">
+              <span class="toggle-info"><strong>Modo agressivo de análise</strong><span>IA considera ativos de maior risco</span></span>
+              <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </li>
+            <li class="toggle-item">
+              <span class="toggle-info"><strong>Sugestões automáticas</strong><span>IA sugere ações proativamente no chat</span></span>
+              <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </li>
+            <li class="toggle-item">
+              <span class="toggle-info"><strong>Idioma da IA</strong><span>Respostas e análises</span></span>
+              <select class="config-select"><option selected>Português (BR)</option><option>English</option><option>Español</option></select>
+            </li>
+            <li class="toggle-item">
+              <span class="toggle-info"><strong>Frequência de scan</strong><span>Intervalo de monitoramento</span></span>
+              <select class="config-select"><option>1 minuto</option><option selected>5 minutos</option><option>15 minutos</option><option>30 minutos</option></select>
+            </li>
+          </ul>
+        </article>
+
+        <article class="config-card">
+          <header class="config-card-header">
+            <h3 class="cc-title">INTERFACE <em>&amp; EXIBIÇÃO</em></h3>
+          </header>
+          <ul class="toggle-list">
+            <li class="toggle-item">
+              <span class="toggle-info"><strong>Efeito scanlines</strong><span>Linhas de CRT sobre a interface</span></span>
+              <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </li>
+            <li class="toggle-item">
+              <span class="toggle-info"><strong>Animações</strong><span>Transições e efeitos visuais</span></span>
+              <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </li>
+            <li class="toggle-item">
+              <span class="toggle-info"><strong>Ocultar valores</strong><span>Esconder patrimônio na tela</span></span>
+              <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            </li>
+          </ul>
+        </article>
+
+        <article class="config-card">
+          <header class="config-card-header">
+            <h3 class="cc-title">SEGURANÇA <em>&amp; ACESSO</em></h3>
+          </header>
+          <ul class="toggle-list">
+            <li class="toggle-item">
+              <span class="toggle-info"><strong>Autenticação 2 fatores</strong><span>Verificação adicional no login</span></span>
+              <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </li>
+            <li class="toggle-item">
+              <span class="toggle-info"><strong>Session timeout</strong><span>Tempo até logout automático</span></span>
+              <select class="config-select"><option>30 minutos</option><option selected>1 hora</option><option>4 horas</option><option>Nunca</option></select>
+            </li>
+            <li class="toggle-item">
+              <span class="toggle-info"><strong>Log de acesso</strong><span>Registrar todos os logins</span></span>
+              <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+            </li>
+          </ul>
+        </article>
+
+      </section>
+
+      <article class="danger-card">
+        <h3 class="danger-title">⚠ ZONA DE PERIGO</h3>
+        <ul class="danger-list">
+          <li class="danger-item">
+            <span class="danger-desc"><strong>Exportar dados da conta</strong><span>Baixar todas as suas informações em JSON</span></span>
+            <button class="btn-danger" onclick="exportData()">EXPORTAR</button>
+          </li>
+          <li class="danger-item">
+            <span class="danger-desc"><strong>Resetar configurações da IA</strong><span>Remove personalizações do OMEGA — irreversível</span></span>
+            <button class="btn-danger" onclick="if(confirm('Resetar OMEGA IA?')) alert('Configurações da IA redefinidas.')">RESETAR IA</button>
+          </li>
+          <li class="danger-item">
+            <span class="danger-desc"><strong>Excluir conta</strong><span>Apaga permanentemente todos os seus dados</span></span>
+            <button class="btn-danger" onclick="deleteAccount()">EXCLUIR CONTA</button>
+          </li>
+        </ul>
+      </article>
+
+      <p id="cfgSavedMsg" style="display:none;font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--red-glow);margin-top:16px;text-align:center;">✓ Configurações salvas com sucesso!</p>
+
+    </section>
+  </section>
+</section>
 </main>
 
 

@@ -1,9 +1,3 @@
-/* ============================================================
-   InvestX — chart.js  (VERSÃO TEMPO REAL COMPLETA)
-   Gráfico SVG com tooltip interativo + live price ticker
-   Usa proxy Vercel (/api/market) para resolver CORS
-   ============================================================ */
-
 let currentChartKey    = '1D';
 let currentChartAsset  = 'PETR4';
 let currentChartPoints = null;
@@ -29,7 +23,7 @@ const CHART_FALLBACK = {
   '1A':[80,90,100,95,110,120,115,125,130,140,135,145,150,145,155,148,162,158,165,172,168,175,182,178,180],
 };
 
-// ============================================================
+
 // BUSCA DADOS DO GRÁFICO VIA PROXY
 // ============================================================
 async function fetchChartData(symbol, period) {
@@ -56,7 +50,7 @@ async function fetchChartData(symbol, period) {
   }
 }
 
-// ============================================================
+
 // RÓTULOS DE EIXO — gerados dinamicamente por período
 // ============================================================
 function getAxisLabels(period, dataLen) {
@@ -104,7 +98,7 @@ function getAxisLabels(period, dataLen) {
   return { x: [], y: null };
 }
 
-// ============================================================
+
 // DESENHO DO GRÁFICO SVG
 // ============================================================
 function drawChart(data) {
@@ -181,7 +175,7 @@ function drawChart(data) {
   if (chartLine) { chartLine.style.opacity = '0'; requestAnimationFrame(() => { chartLine.style.transition = 'opacity 0.4s'; chartLine.style.opacity = '1'; }); }
 }
 
-// ============================================================
+
 // RÓTULOS Y DINÂMICOS
 // ============================================================
 function updateChartYLabels(min, max, H, BOT) {
@@ -196,7 +190,7 @@ function updateChartYLabels(min, max, H, BOT) {
   });
 }
 
-// ============================================================
+
 // RÓTULOS X DINÂMICOS
 // ============================================================
 function updateChartXLabels(period) {
@@ -208,7 +202,7 @@ function updateChartXLabels(period) {
   });
 }
 
-// ============================================================
+
 // TABS DE PERÍODO
 // ============================================================
 async function setTab(el, key) {
@@ -224,7 +218,7 @@ async function setTab(el, key) {
   drawChart(data || CHART_FALLBACK[key]);
 }
 
-// ============================================================
+
 // SELEÇÃO DE ATIVO — chamada dos port-cards e da tabela
 // ============================================================
 async function selectAsset(name) {
@@ -241,7 +235,7 @@ async function selectAsset(name) {
   drawChart(data || CHART_FALLBACK[currentChartKey]);
 }
 
-// ============================================================
+
 // TOOLTIP INTERATIVO
 // ============================================================
 function initChartTooltip() {
@@ -301,7 +295,7 @@ function initChartTooltip() {
   });
 }
 
-// ============================================================
+
 // LIVE PRICE TICKER — sincroniza livePrice com marketCache a cada 15s
 // ============================================================
 function startLivePriceTicker() {
@@ -321,7 +315,7 @@ function startLivePriceTicker() {
   }, 15_000);
 }
 
-// ============================================================
+
 // INICIALIZAÇÃO DO MÓDULO DE GRÁFICO
 // ============================================================
 (async function initChart() {

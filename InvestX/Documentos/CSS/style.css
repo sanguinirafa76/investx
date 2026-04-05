@@ -1452,10 +1452,6 @@ table.market-table tbody tr:hover {
   background:rgba(220,38,38,.05); 
 }
 
-.td-r { 
-  text-align:right; 
-}
-
 .asset-cell {
   display:flex; 
   align-items:center;
